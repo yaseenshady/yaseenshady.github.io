@@ -47,7 +47,7 @@ export default function Navbar() {
 
         <a
           href="mailto:yaseenshady7@gmail.com"
-          className="hidden md:inline-flex items-center gap-2 rounded-full border border-[rgba(255,214,10,0.3)] bg-[rgba(255,214,10,0.08)] px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-[#ffd60a] hover:bg-[rgba(255,214,10,0.16)] transition-all duration-300"
+          className="hidden md:inline-flex btn-glass text-[11px] tracking-widest uppercase text-[#ffd60a] border-[rgba(255,214,10,0.25)] px-5 py-2"
         >
           Say hello
         </a>

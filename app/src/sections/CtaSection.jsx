@@ -47,16 +47,15 @@ export default function CtaSection({ reduceMotion }) {
           transition={{ duration: 0.65, delay: 0.3, ease: EASE }}
           className="flex flex-wrap justify-center gap-4"
         >
-          <a href="mailto:yaseenshady7@gmail.com"
-            className="rounded-full bg-[#ffd60a] px-8 py-3.5 text-sm font-bold text-[#050505] tracking-wide hover:bg-[#ffe44d] transition-all duration-300 hover:shadow-glow">
+          <a href="mailto:yaseenshady7@gmail.com" className="btn-gold px-8 py-3.5">
             Email me
           </a>
           <a href="https://github.com/yaseenshady" target="_blank" rel="noreferrer"
-            className="glass rounded-full px-8 py-3.5 text-sm font-medium text-[#f0ede4] hover:border-[rgba(255,214,10,0.3)] transition-all duration-300">
+            className="btn-glass px-8 py-3.5">
             GitHub ↗
           </a>
           <a href="https://yaseensh.github.io/Lexoire/" target="_blank" rel="noreferrer"
-            className="rounded-full px-8 py-3.5 text-sm font-medium text-[rgba(240,237,228,0.45)] hover:text-[#ffd60a] transition-colors duration-300">
+            className="btn-glass px-8 py-3.5">
             Lexoire site →
           </a>
         </motion.div>

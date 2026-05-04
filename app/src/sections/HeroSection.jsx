@@ -39,13 +39,8 @@ export default function HeroSection({ reduceMotion }) {
   return (
     <section id="top" className="relative flex min-h-screen w-full items-center overflow-hidden">
 
-      {/* Background atmosphere */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_-10%,rgba(255,214,10,0.11),transparent)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-[rgba(255,255,255,0.05)]" />
-        {/* Subtle animated grain */}
-        <div className="absolute inset-0 opacity-[0.025] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIi8+PC9zdmc+')] bg-repeat" />
-      </div>
+      {/* Section-specific glow lift */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_-10%,rgba(255,214,10,0.09),transparent)]" />
 
       <motion.div
         style={{ y: reduceMotion ? 0 : textY }}
@@ -59,7 +54,7 @@ export default function HeroSection({ reduceMotion }) {
           className="mb-6 flex items-center gap-3"
         >
           <span className="h-px w-10 bg-[#ffd60a]" />
-          <span className="text-[11px] font-semibold tracking-[0.34em] uppercase text-[#ffd60a]">
+          <span className="glass-ball rounded-full px-4 py-1 text-[10px] font-semibold tracking-[0.3em] uppercase text-[#ffd60a]">
             Microsoft Engineer · AI Technologist
           </span>
         </motion.div>
@@ -97,27 +92,29 @@ export default function HeroSection({ reduceMotion }) {
           </AnimatePresence>
         </motion.div>
 
-        {/* Bio */}
-        <motion.p
+        {/* Bio — glass ball container */}
+        <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.65, ease: EASE }}
-          className="mb-10 max-w-2xl text-[1.08rem] leading-[1.85] text-[rgba(240,237,228,0.6)]"
+          className="glass-ball rounded-2xl p-6 mb-8 max-w-2xl"
         >
-          Computer enthusiast and AI technologist with over a decade of programming
-          experience, starting self-taught in{' '}
-          <span className="text-[#f0ede4] font-medium">Egypt at age 12.</span>{' '}
-          After moving to the SF Bay Area, I developed a passion for the intersection of
-          artificial intelligence, algorithmic trading, and data science — earning
-          professional certifications in 2019. Through the{' '}
-          <span className="text-[#f0ede4] font-medium">Middle College program,</span> I
-          accelerated my education by replacing my final two years of high school with
-          college-level CS courses. I've since delivered ML solutions and conducted
-          impactful research across diverse projects, now building at{' '}
-          <span className="text-[#f0ede4] font-medium">Microsoft.</span>
-        </motion.p>
+          <p className="text-[1.05rem] leading-[1.9] text-[rgba(240,237,228,0.72)]">
+            Computer enthusiast and AI technologist with over a decade of programming
+            experience, starting self-taught in{' '}
+            <span className="text-[#f0ede4] font-semibold">Egypt at age 12.</span>{' '}
+            After moving to the SF Bay Area, I developed a passion for the intersection of
+            AI, algorithmic trading, and data science — earning professional certifications
+            in 2019. Through the{' '}
+            <span className="text-[#f0ede4] font-semibold">Middle College program,</span>{' '}
+            I replaced my final two years of high school with college-level CS courses.
+            Now building at{' '}
+            <span className="text-[#f0ede4] font-semibold">Microsoft.</span>{' '}
+            Outside of tech: scuba diver, snowboarder, DJ, guitarist, photographer.
+          </p>
+        </motion.div>
 
-        {/* Hobby pills */}
+        {/* Hobby pills — glass ball style */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,30 +127,27 @@ export default function HeroSection({ reduceMotion }) {
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.9 + i * 0.07, ease: EASE }}
-              className="flex items-center gap-1.5 rounded-full border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-4 py-1.5 text-[11px] font-medium tracking-wide text-[rgba(240,237,228,0.55)] backdrop-blur-sm"
+              className="glass-ball flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-medium tracking-wide text-[rgba(240,237,228,0.7)]"
             >
               <span>{h.icon}</span>{h.label}
             </motion.span>
           ))}
         </motion.div>
 
-        {/* CTAs */}
+        {/* CTAs — glass flow buttons */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.1, ease: EASE }}
           className="flex flex-wrap gap-3"
         >
-          <a href="#work"
-            className="rounded-full bg-[#ffd60a] px-7 py-3 text-sm font-bold text-[#050505] tracking-wide hover:bg-[#ffe44d] transition-all duration-300 hover:shadow-glow">
+          <a href="#story" className="btn-gold">
             See the journey
           </a>
-          <a href="#builds"
-            className="glass rounded-full px-7 py-3 text-sm font-medium text-[#f0ede4] hover:border-[rgba(255,214,10,0.3)] transition-all duration-300">
+          <a href="#builds" className="btn-glass">
             Builds
           </a>
-          <a href="mailto:yaseenshady7@gmail.com"
-            className="rounded-full px-7 py-3 text-sm font-medium text-[rgba(240,237,228,0.4)] hover:text-[#ffd60a] transition-colors duration-300">
+          <a href="mailto:yaseenshady7@gmail.com" className="btn-glass">
             Say hello →
           </a>
         </motion.div>
