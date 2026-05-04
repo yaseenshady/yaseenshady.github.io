@@ -242,10 +242,11 @@
                   <path class="guitar-neck" d="M326 260 L708 172"/>
                   <path class="guitar-head" d="M704 144 L788 120 L802 164 L724 196 Z"/>
                   <path class="guitar-frets" d="M408 241 L428 287 M474 226 L494 272 M540 210 L560 256 M606 196 L626 242 M672 180 L692 226"/>
-                  <path class="guitar-body" d="M244 234 C284 190 348 202 366 256 C418 258 450 306 430 356 C412 408 346 418 308 382 C258 428 178 400 172 336 C166 282 204 268 244 234 Z"/>
-                  <circle class="guitar-hole" cx="296" cy="314" r="45"/>
-                  <rect class="guitar-pickup" x="346" y="286" width="52" height="22" rx="8"/>
-                  <rect class="guitar-pickup guitar-pickup--two" x="324" y="336" width="54" height="22" rx="8"/>
+                  <path class="guitar-body guitar-body--strat" d="M238 232 C276 196 326 204 348 244 C376 212 424 226 416 270 C456 292 452 354 410 380 C378 402 336 392 316 362 C286 422 190 402 176 338 C166 292 194 262 238 232 Z"/>
+                  <path class="guitar-pickguard" d="M272 266 C304 246 354 258 374 292 C396 326 376 364 330 370 C278 378 242 346 250 306 C254 288 260 276 272 266 Z"/>
+                  <rect class="guitar-pickup" x="336" y="276" width="58" height="18" rx="8" transform="rotate(-12 365 285)"/>
+                  <rect class="guitar-pickup guitar-pickup--two" x="314" y="316" width="58" height="18" rx="8" transform="rotate(-12 343 325)"/>
+                  <rect class="guitar-pickup guitar-pickup--three" x="284" y="350" width="52" height="16" rx="8" transform="rotate(-12 310 358)"/>
                   <path class="guitar-string guitar-string--one" d="M286 286 L760 137"/>
                   <path class="guitar-string guitar-string--two" d="M292 300 L766 150"/>
                   <path class="guitar-string guitar-string--three" d="M298 314 L772 164"/>
@@ -255,6 +256,33 @@
                 </g>
                 <path class="sound-wave sound-wave--one" d="M892 226 C948 266 948 318 892 358"/>
                 <path class="sound-wave sound-wave--two" d="M922 186 C1018 252 1018 332 922 400"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-scene story-scene--dj" data-scroll-scene>
+          <div class="story-scene__sticky">
+            <div class="story-scene__copy">
+              <p class="section-kicker">DJ</p>
+              <h2>Mix signal, rhythm, and energy.</h2>
+              <p>DJing turns timing into a live system: listen, blend, react, and keep the room moving.</p>
+            </div>
+            <div class="dj-stage" aria-hidden="true">
+              <svg class="dj-rig" viewBox="0 0 980 560" role="img">
+                <rect class="dj-table" x="128" y="150" width="724" height="284" rx="34"/>
+                <circle class="dj-record dj-record--left" cx="314" cy="292" r="112"/>
+                <circle class="dj-record-core" cx="314" cy="292" r="36"/>
+                <circle class="dj-record dj-record--right" cx="666" cy="292" r="112"/>
+                <circle class="dj-record-core" cx="666" cy="292" r="36"/>
+                <rect class="dj-mixer" x="438" y="178" width="104" height="228" rx="18"/>
+                <path class="dj-slider" d="M470 216V368 M510 216V368"/>
+                <circle class="dj-knob" cx="470" cy="250" r="11"/>
+                <circle class="dj-knob dj-knob--two" cx="510" cy="318" r="11"/>
+                <path class="dj-crossfader" d="M460 382H520"/>
+                <circle class="dj-crossfader-dot" cx="496" cy="382" r="9"/>
+                <path class="dj-wave dj-wave--one" d="M160 104 C270 46 390 46 500 104 C610 162 730 162 840 104"/>
+                <path class="dj-wave dj-wave--two" d="M196 472 C300 520 404 520 508 472 C612 424 716 424 820 472"/>
               </svg>
             </div>
           </div>
@@ -351,7 +379,7 @@
                   <span></span><span></span><span></span>
                   <strong>lexoire/session.ts</strong>
                 </div>
-                <pre><code><span class="code-muted">const</span> curiosity = ["ocean", "music", "photo", "snow"];</code>
+                <pre><code><span class="code-muted">const</span> curiosity = ["ocean", "strat", "dj", "photo", "snow"];</code>
 <code><span class="code-muted">const</span> build = <span class="code-accent">orchestrate</span>({ voice, agents, context });</code>
 <code><span class="code-muted">await</span> ship(build).to("people");</code>
 <code class="code-run">✓ experience compiled</code></pre>
@@ -621,19 +649,43 @@
 
         <div class="beyond-grid">
           <article class="beyond-card glass-panel js-reveal" data-tilt data-depth="0.4">
-            <div class="beyond-card__icon">🤿</div>
+            <div class="beyond-card__animation beyond-card__animation--dive" aria-hidden="true">
+              <span class="mini-bubble mini-bubble--one"></span>
+              <span class="mini-bubble mini-bubble--two"></span>
+              <span class="mini-diver"></span>
+              <span class="mini-coral"></span>
+            </div>
             <h3>Avid scuba diver</h3>
             <p>Exploring what exists below the surface — literally. Scuba diving taught me patience, precision, and how to stay calm when things get pressurized.</p>
           </article>
           <article class="beyond-card glass-panel js-reveal" data-tilt data-depth="0.4">
-            <div class="beyond-card__icon">🎸</div>
+            <div class="beyond-card__animation beyond-card__animation--guitar" aria-hidden="true">
+              <span class="mini-strat-body"></span>
+              <span class="mini-strat-neck"></span>
+              <span class="mini-strat-wave mini-strat-wave--one"></span>
+              <span class="mini-strat-wave mini-strat-wave--two"></span>
+            </div>
             <h3>Musician</h3>
             <p>Guitar has the same feedback loop as writing code — tiny adjustments, immediate results, infinite depth. Both reward deliberate practice.</p>
           </article>
           <article class="beyond-card glass-panel js-reveal" data-tilt data-depth="0.4">
-            <div class="beyond-card__icon">🌍</div>
+            <div class="beyond-card__animation beyond-card__animation--route" aria-hidden="true">
+              <span class="mini-city mini-city--egypt">EG</span>
+              <span class="mini-city mini-city--bay">SF</span>
+              <span class="mini-city mini-city--redmond">WA</span>
+              <span class="mini-route-line"></span>
+            </div>
             <h3>Egypt → Bay Area → Redmond</h3>
             <p>Three very different environments. Each one reshaped how I think, build, and collaborate. Perspective is a compounding advantage.</p>
+          </article>
+          <article class="beyond-card glass-panel js-reveal" data-tilt data-depth="0.4">
+            <div class="beyond-card__animation beyond-card__animation--dj" aria-hidden="true">
+              <span class="mini-record mini-record--left"></span>
+              <span class="mini-record mini-record--right"></span>
+              <span class="mini-mixer"></span>
+            </div>
+            <h3>DJ</h3>
+            <p>Mixing tracks is another version of engineering: timing, transitions, feedback, and reading the system in real time.</p>
           </article>
         </div>
       </section>
