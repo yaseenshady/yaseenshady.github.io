@@ -1,21 +1,20 @@
-import { motion } from 'framer-motion'
-import { useRef, useState, useEffect, forwardRef } from 'react'
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
+import { useRef, useState } from 'react'
 
 const EASE = [0.22, 1, 0.36, 1]
 
-/* ── Word-by-word animated sentence ──────────────────────────── */
+/* ── Word-by-word animated sentence — re-animates on each new card ── */
 function AnimatedSentence({ text }) {
   const words = text.split(' ')
   return (
-    <p className="text-[1.07rem] leading-[1.85] text-[rgba(240,237,228,0.62)]">
+    <p className="text-[1.08rem] leading-[1.9] text-[rgba(240,237,228,0.62)]">
       {words.map((word, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0.08, y: 10, filter: 'blur(3px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-10px' }}
-          transition={{ duration: 0.45, delay: i * 0.048, ease: EASE }}
-          className="inline-block mr-[0.3em]"
+          initial={{ opacity: 0.05, y: 12, filter: 'blur(5px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.5, delay: 0.25 + i * 0.052, ease: EASE }}
+          className="inline-block mr-[0.28em]"
         >
           {word}
         </motion.span>
@@ -24,7 +23,7 @@ function AnimatedSentence({ text }) {
   )
 }
 
-/* ── Chapter data (one punchy sentence each) ─────────────────── */
+/* ── Chapter data ──────────────────────────────────────────────── */
 const chapters = [
   {
     year: '2012', place: 'Egypt',
@@ -36,7 +35,7 @@ const chapters = [
     year: '2019', place: 'SF Bay Area',
     color: '#ffd60a', icon: '🧠',
     title: 'Found the edge.',
-    sentence: 'Fell deep into AI, algorithmic trading, and data science — earning professional certifications because the intersection felt like the most interesting problem on earth.',
+    sentence: 'Fell into AI, algorithmic trading, and data science — earning certifications because the intersection felt like the most interesting problem on earth.',
   },
   {
     year: '2020', place: 'Middle College',
@@ -48,175 +47,212 @@ const chapters = [
     year: 'Jul 2022', place: 'Microsoft ATL · Cairo',
     color: '#00a4ef', icon: '🏢',
     title: 'First internship.',
-    sentence: 'Built a meeting summarizer prototype at Microsoft in Cairo — timed transcripts, keyword extraction, summaries, and video in one unified interface backed by Azure Cosmos DB.',
+    sentence: 'Built a meeting summarizer at Microsoft in Cairo — transcripts, keywords, summaries, and video in one unified interface backed by Azure Cosmos DB.',
   },
   {
     year: 'Jan–Apr 2022', place: 'U.S. State Department',
     color: '#34d399', icon: '📄',
     title: 'Published research.',
-    sentence: 'Built a misinformation detection toolkit for State Department senior leadership as part of the Diplomacy Lab — my name is on the published paper.',
+    sentence: 'Built a misinformation detection toolkit for State Department senior leadership — my name is listed on the published research paper.',
   },
   {
     year: 'May–Aug 2023', place: 'Microsoft Gray Systems Lab',
     color: '#00a4ef', icon: '🗄️',
     title: 'Open source.',
-    sentence: 'Pioneered applying MLOS — Microsoft\'s ML-assisted tuning framework — to MariaDB. Scripts integrated directly into the open-source project.',
+    sentence: 'Pioneered applying MLOS — Microsoft\'s ML-assisted tuning framework — to MariaDB. Scripts merged directly into the open-source project.',
   },
   {
     year: '2023 – 2025', place: 'Amunet · Solo Founder',
     color: '#ffd60a', icon: '📱',
     title: 'Solo founder.',
-    sentence: 'Built an iOS app from zero, shipped globally alone — SwiftUI, the marketing site, the legal entity. 100 downloads in the first month. Everything, solo.',
+    sentence: 'Built an iOS app from zero and shipped it globally alone — SwiftUI, the site, the legal entity. 100 downloads in the first month. Everything, solo.',
   },
   {
     year: 'May–Aug 2024', place: 'Microsoft Gray Systems Lab',
     color: '#00a4ef', icon: '📊',
     title: '50% faster.',
-    sentence: 'Discovered a 50% improvement in P95 latency for the TPC-C benchmark. Work cited in the SIGMOD 2025 autotuning tutorial — the top database research conference.',
+    sentence: 'Discovered a 50% improvement in P95 latency for the TPC-C benchmark. Work cited in the SIGMOD 2025 autotuning tutorial.',
   },
   {
     year: 'Now', place: 'Microsoft · Redmond',
     color: '#00a4ef', icon: '⚡',
     title: 'Building at scale.',
-    sentence: 'Full-time Software Engineer at Microsoft — distributed systems, ML-assisted performance tuning, and developer tooling at scale. From intern to engineer, and still just getting started.',
+    sentence: 'Full-time Software Engineer at Microsoft — distributed systems, ML-assisted performance tuning, and developer tooling at scale. Just getting started.',
   },
 ]
 
-/* ── 3D Panel card ───────────────────────────────────────────── */
-const ChapterCard = forwardRef(function ChapterCard({ ch, index }, ref) {
+/* ── Chapter card — mounts fresh on each chapter, so words re-animate ── */
+function ChapterCard({ ch }) {
   return (
-    <div ref={ref}>
-      <motion.div
-        initial={{ opacity: 0, y: 64, rotateX: 14, scale: 0.97 }}
-        whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.85, ease: EASE }}
-        style={{ transformPerspective: 1100 }}
-        className="glass-flow rounded-3xl overflow-hidden"
-      >
-        {/* Top accent bar */}
-        <div className="h-[2px]" style={{ background: `linear-gradient(to right, ${ch.color}, transparent)` }} />
+    <motion.div
+      initial={{ opacity: 0, y: 80, scale: 0.94, rotateX: 12 }}
+      animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+      exit={{ opacity: 0, y: -50, scale: 0.96, rotateX: -6 }}
+      transition={{ duration: 0.55, ease: EASE }}
+      style={{ transformPerspective: 1100 }}
+      className="glass-flow rounded-3xl overflow-hidden w-full"
+    >
+      {/* Color accent bar */}
+      <div className="h-[2px]"
+        style={{ background: `linear-gradient(to right, ${ch.color}, transparent 80%)` }}
+      />
 
-        <div className="p-8 md:p-10">
-          <div className="flex flex-col md:flex-row md:items-start gap-8">
-
-            {/* Left: text content */}
-            <div className="flex-1 min-w-0">
-              {/* Year · Place */}
-              <div className="flex items-center gap-2.5 mb-5">
-                <span className="h-px w-5 shrink-0" style={{ background: ch.color }} />
-                <span className="text-[10px] font-semibold tracking-[0.3em] uppercase" style={{ color: ch.color }}>
-                  {ch.year} · {ch.place}
-                </span>
-              </div>
-
-              {/* Title */}
-              <motion.h3
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
-                className="mb-5 font-black leading-[1.0] tracking-[-0.04em] text-[#f0ede4]"
-                style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)' }}
-              >
-                {ch.title}
-              </motion.h3>
-
-              {/* Animated sentence */}
-              <AnimatedSentence text={ch.sentence} />
+      <div className="p-8 md:p-12">
+        {/* Header row */}
+        <div className="flex items-start justify-between gap-6 mb-7">
+          <div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="h-px w-5 shrink-0" style={{ background: ch.color }} />
+              <span className="text-[10px] font-semibold tracking-[0.3em] uppercase"
+                style={{ color: ch.color }}>
+                {ch.year} · {ch.place}
+              </span>
             </div>
 
-            {/* Right: icon accent */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.6 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2, type: 'spring', stiffness: 260, damping: 22 }}
-              className="shrink-0 self-start md:self-center w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center text-4xl md:text-5xl"
-              style={{
-                background: `radial-gradient(circle at 35% 35%, ${ch.color}18 0%, ${ch.color}06 60%, transparent 100%)`,
-                boxShadow: `0 0 40px ${ch.color}18, inset 0 1px 0 rgba(255,255,255,0.1)`,
-                border: `1px solid ${ch.color}22`,
-              }}
+            <motion.h3
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
+              className="font-black leading-[1.0] tracking-[-0.04em] text-[#f0ede4]"
+              style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.4rem)' }}
             >
-              {ch.icon}
-            </motion.div>
-
+              {ch.title}
+            </motion.h3>
           </div>
+
+          {/* Icon */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.15, type: 'spring', stiffness: 280, damping: 22 }}
+            className="shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center text-4xl md:text-5xl"
+            style={{
+              background: `radial-gradient(circle at 35% 35%, ${ch.color}1a 0%, ${ch.color}07 70%)`,
+              boxShadow: `0 0 40px ${ch.color}18, inset 0 1px 0 rgba(255,255,255,0.08)`,
+              border: `1px solid ${ch.color}25`,
+            }}
+          >
+            {ch.icon}
+          </motion.div>
         </div>
-      </motion.div>
-    </div>
+
+        {/* Animated sentence */}
+        <AnimatedSentence text={ch.sentence} />
+      </div>
+    </motion.div>
   )
-})
+}
 
-/* ── Section ──────────────────────────────────────────────────── */
-export default function ChronicleSection({ reduceMotion }) {
+/* ── Section ───────────────────────────────────────────────────── */
+export default function ChronicleSection() {
+  const containerRef = useRef(null)
   const [activeIdx, setActiveIdx] = useState(0)
-  const itemRefs = useRef([])
 
-  useEffect(() => {
-    const observers = itemRefs.current.map((el, i) => {
-      if (!el) return null
-      const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveIdx(i) },
-        { rootMargin: '-35% 0px -35% 0px', threshold: 0 }
-      )
-      obs.observe(el)
-      return obs
-    })
-    return () => observers.forEach(o => o?.disconnect())
-  }, [])
+  // Total height = chapters × 100vh (scroll distance) + 100vh (the pinned panel itself)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  })
+
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const idx = Math.min(Math.floor(v * chapters.length), chapters.length - 1)
+    setActiveIdx(idx)
+  })
+
+  const ch = chapters[activeIdx]
 
   return (
-    <section id="story" className="relative px-6 sm:px-12 py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_30%_at_50%_0%,rgba(255,214,10,0.05),transparent)]" />
+    <section
+      id="story"
+      ref={containerRef}
+      style={{ height: `calc(${chapters.length * 100}vh + 100vh)` }}
+      className="relative"
+    >
+      {/* ── Sticky panel: stays on screen while user scrolls ── */}
+      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
 
-      {/* Chapter progress dots */}
-      <div className="hidden lg:flex fixed right-5 top-1/2 -translate-y-1/2 z-40 flex-col gap-2.5">
-        {chapters.map((ch, i) => (
-          <motion.button
-            key={i}
-            animate={{
-              scale:           activeIdx === i ? 1.6 : 1,
-              backgroundColor: activeIdx === i ? ch.color : 'rgba(255,255,255,0.18)',
-              boxShadow:       activeIdx === i ? `0 0 12px ${ch.color}60` : 'none',
-            }}
-            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-            onClick={() => itemRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-            className="w-2 h-2 rounded-full cursor-pointer"
-            title={ch.title}
+        {/* Background atmosphere */}
+        <div className="pointer-events-none absolute inset-0">
+          <motion.div
+            animate={{ opacity: [0.04, 0.07, 0.04] }}
+            transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+            className="absolute inset-0"
+            style={{ background: `radial-gradient(ellipse 60% 50% at 50% 0%, ${ch.color}12, transparent)` }}
           />
-        ))}
-      </div>
+        </div>
 
-      <div className="mx-auto max-w-4xl">
+        {/* ── Top bar: section label + chapter counter ── */}
+        <div className="relative z-10 pt-24 pb-4 px-6 sm:px-12">
+          <div className="mx-auto max-w-4xl flex items-end justify-between">
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.34em] uppercase text-[#ffd60a] mb-1">
+                The story
+              </p>
+              <h2 className="text-2xl font-black tracking-[-0.03em] text-[#f0ede4]">
+                Every chapter, in order.
+              </h2>
+            </div>
 
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.7, ease: EASE }}
-          className="mb-12"
-        >
-          <p className="mb-4 text-[11px] font-semibold tracking-[0.34em] uppercase text-[#ffd60a]">
-            The story
-          </p>
-          <h2 className="text-[clamp(2.4rem,5vw,4rem)] font-black leading-[1.0] tracking-[-0.04em] text-[#f0ede4]">
-            Every chapter.<br />In order.
-          </h2>
-        </motion.div>
+            {/* Chapter counter */}
+            <div className="glass-ball rounded-2xl px-5 py-3 text-right">
+              <motion.p
+                key={activeIdx}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-2xl font-black text-[#ffd60a] leading-none tabular-nums"
+              >
+                {String(activeIdx + 1).padStart(2, '0')}
+              </motion.p>
+              <p className="text-[10px] tracking-widest text-[rgba(240,237,228,0.35)] mt-0.5">
+                / {String(chapters.length).padStart(2, '0')}
+              </p>
+            </div>
+          </div>
 
-        {/* Cards */}
-        <div className="flex flex-col gap-4">
-          {chapters.map((ch, i) => (
-            <ChapterCard
-              key={ch.year + ch.place}
-              ch={ch}
-              index={i}
-              ref={el => { itemRefs.current[i] = el }}
-            />
-          ))}
+          {/* Chapter progress bar */}
+          <div className="mx-auto max-w-4xl mt-4">
+            <div className="h-px w-full bg-[rgba(255,255,255,0.07)] rounded-full overflow-hidden">
+              <motion.div
+                className="h-full rounded-full"
+                animate={{ width: `${((activeIdx + 1) / chapters.length) * 100}%` }}
+                style={{ background: ch.color }}
+                transition={{ duration: 0.4, ease: EASE }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ── Chapter card area ── */}
+        <div className="relative z-10 flex-1 flex items-center px-6 sm:px-12">
+          <div className="w-full max-w-4xl mx-auto">
+            <AnimatePresence mode="wait">
+              <ChapterCard key={activeIdx} ch={ch} />
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* ── Scroll hint ── */}
+        <div className="relative z-10 pb-6 flex flex-col items-center gap-2">
+          {activeIdx < chapters.length - 1 ? (
+            <>
+              <motion.div
+                animate={{ y: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+                className="w-px h-8 bg-gradient-to-b from-[rgba(255,214,10,0.5)] to-transparent"
+              />
+              <p className="text-[10px] tracking-[0.28em] uppercase text-[rgba(240,237,228,0.2)]">
+                scroll for next
+              </p>
+            </>
+          ) : (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-[10px] tracking-[0.28em] uppercase text-[rgba(255,214,10,0.4)]"
+            >
+              that's the story ↓
+            </motion.p>
+          )}
         </div>
       </div>
     </section>
