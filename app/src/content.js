@@ -64,14 +64,20 @@ export const hobbiesCards = [
   {
     title: "Guitar",
     eyebrow: "Rhythm",
-    body: "Texture, repetition, and tiny improvements over time always pull me in.",
+    body: "I started playing sophomore year of high school. Tiny adjustments, better tone, and repetition still pull me in.",
     visual: "guitar",
   },
   {
     title: "DJing",
     eyebrow: "Energy",
-    body: "I love transitions, pacing, and controlling the feeling of a room.",
+    body: "I started DJing freshman year of college. I love transitions, pacing, and controlling the feeling of a room.",
     visual: "dj",
+  },
+  {
+    title: "Snowboarding",
+    eyebrow: "Motion",
+    body: "I started snowboarding in 2025. It is balance, speed, and commitment in one clean line.",
+    visual: "snow",
   },
   {
     title: "Photography",
