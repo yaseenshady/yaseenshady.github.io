@@ -9,6 +9,7 @@ import {
 import { useRef, useState } from 'react'
 
 const EASE = [0.22, 1, 0.36, 1]
+const CHAPTER_SCROLL_VH = 165
 
 /* ── Word-by-word animated sentence — re-animates on each new card ── */
 function AnimatedSentence({ text }) {
@@ -35,74 +36,74 @@ const chapters = [
   {
     year: 'Depth', place: 'Scuba',
     color: '#38bdf8', visual: 'scuba',
-    title: 'Calm under pressure.',
-    sentence: 'Underwater, every movement matters. That patience follows me back into code.',
+    title: 'I start where it gets quiet.',
+    sentence: 'Scuba taught me calm under pressure: breathe first, move with intention, trust the system.',
   },
   {
     year: 'High school', place: 'Guitar',
     color: '#ffd60a', visual: 'guitar',
-    title: 'Sophomore year, I found tone.',
-    sentence: 'A Strat, a chord, a better take. Small adjustments became instinct.',
+    title: 'Sophomore year, tone became a craft.',
+    sentence: 'Guitar taught me feedback: tiny changes, cleaner signal, better feel.',
   },
   {
     year: 'College freshman', place: 'DJ',
     color: '#f472b6', visual: 'dj',
     title: 'Freshman year, I learned flow.',
-    sentence: 'DJing taught timing, transitions, and how to keep energy alive in real time.',
+    sentence: 'DJing taught me timing: read the room, blend the transition, keep the energy alive.',
   },
   {
     year: '2025', place: 'Snowboarding',
     color: '#e0f2fe', visual: 'snow',
-    title: 'This year, I started chasing lines.',
-    sentence: 'Snowboarding is new: read terrain, absorb impact, commit, and keep moving.',
+    title: 'In 2025, I started chasing lines.',
+    sentence: 'Snowboarding is new, but familiar: choose a path, commit, recover, keep moving.',
   },
   {
     year: 'Frame', place: 'Photography',
     color: '#a78bfa', visual: 'photo',
-    title: 'Choose the focus.',
-    sentence: 'Photography taught me to notice signal before the moment disappears.',
+    title: 'Photography taught me to frame signal.',
+    sentence: 'Light, timing, composition: decide what matters before the moment disappears.',
   },
   {
     year: '2012', place: 'Egypt',
     color: '#ffd60a', visual: 'code',
-    title: 'A kid and a keyboard.',
-    sentence: 'At 12, curiosity became code.',
+    title: 'Then curiosity became code.',
+    sentence: 'At 12 in Egypt, I found a keyboard and started teaching myself how machines think.',
   },
   {
     year: '2019', place: 'SF Bay Area',
     color: '#ffd60a', visual: 'network',
-    title: 'The map opened.',
-    sentence: 'AI, markets, and data gave the curiosity direction.',
+    title: 'The Bay Area widened the map.',
+    sentence: 'AI, markets, and data turned curiosity into direction.',
   },
   {
     year: '2020', place: 'Middle College',
     color: '#ffd60a', visual: 'cards',
-    title: 'Skipped the queue.',
-    sentence: 'I traded the normal timeline for college computer science and momentum.',
+    title: 'I chose the faster route.',
+    sentence: 'Middle College let me replace the normal timeline with real computer science momentum.',
   },
   {
     year: 'Jul 2022', place: 'Microsoft ATL - Cairo',
     color: '#00a4ef', visual: 'microsoft',
     title: 'First Microsoft build.',
-    sentence: 'Transcript, keywords, video, and Azure data in one meeting flow.',
+    sentence: 'I turned meetings into a searchable flow of transcript, keywords, video, and Azure data.',
   },
   {
     year: 'Jan-Apr 2022', place: 'U.S. State Department',
     color: '#34d399', visual: 'research',
     title: 'Signal from noise.',
-    sentence: 'Research became a toolkit for spotting misinformation at scale.',
+    sentence: 'Research became a toolkit for spotting misinformation before it spreads.',
   },
   {
     year: '2023', place: 'Microsoft Gray Systems Lab',
     color: '#00a4ef', visual: 'database',
-    title: 'Tuning the engine.',
+    title: 'Then I started tuning engines.',
     sentence: 'ML-assisted database optimization moved from experiment into open source.',
   },
   {
     year: '2023-2025', place: 'Amunet - Solo Founder',
     color: '#ffd60a', visual: 'phone',
-    title: 'Built alone.',
-    sentence: 'SwiftUI, website, legal setup, App Store launch. The whole loop.',
+    title: 'I learned the full founder loop.',
+    sentence: 'SwiftUI, website, legal setup, App Store launch: every layer, built solo.',
   },
   {
     year: '2024', place: 'Microsoft Gray Systems Lab',
@@ -113,7 +114,7 @@ const chapters = [
   {
     year: 'Now', place: 'Microsoft - Redmond',
     color: '#00a4ef', visual: 'system',
-    title: 'Building at scale.',
+    title: 'Now I build at scale.',
     sentence: 'Distributed systems, AI-assisted tuning, and tools that make complex work usable.',
   },
 ]
@@ -506,12 +507,18 @@ function ChapterVisual({ ch, motionStyle }) {
         <motion.div
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex min-h-72 min-w-72 items-center justify-center rounded-[36px]"
+          className="relative flex min-h-72 min-w-72 items-center justify-center overflow-hidden rounded-[36px]"
           style={{
             background: `radial-gradient(circle at 50% 45%, ${ch.color}18 0%, ${ch.color}05 62%, transparent 72%)`,
             boxShadow: `0 0 70px ${ch.color}24, 0 0 130px ${ch.color}0f`,
           }}
         >
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 right-0 z-20 h-24 bg-gradient-to-b from-transparent via-white/[0.08] to-transparent"
+            style={{ y: motionStyle.scanY }}
+          />
+          <div className="pointer-events-none absolute inset-0 z-10 rounded-[36px] border border-white/10" />
           <VisualGlyph type={ch.visual} color={ch.color} />
         </motion.div>
 
@@ -633,17 +640,18 @@ export default function ChronicleSection() {
     return raw - Math.floor(raw)
   })
 
-  const spring = { stiffness: 130, damping: 24, mass: 0.55 }
+  const spring = { stiffness: 82, damping: 30, mass: 0.8 }
   const motionStyle = {
-    cardRotateX: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [13, -2, -11]), spring),
-    cardRotateY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [-12, 2, 13]), spring),
-    cardY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [34, 0, -30]), spring),
-    cardScale: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [0.965, 1.025, 0.985]), spring),
-    visualRotateX: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [8, -2, -8]), spring),
-    visualRotateY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [14, -3, -14]), spring),
-    visualY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [28, 0, -26]), spring),
-    visualPanelRotate: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [-10, 1, 10]), spring),
-    orbitRotate: useTransform(scrollYProgress, [0, 1], [0, 900]),
+    cardRotateX: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [8, -1, -7]), spring),
+    cardRotateY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [-9, 1.5, 9]), spring),
+    cardY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [48, 0, -42]), spring),
+    cardScale: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [0.975, 1.015, 0.99]), spring),
+    visualRotateX: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [6, -1, -6]), spring),
+    visualRotateY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [10, -2, -10]), spring),
+    visualY: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [36, 0, -34]), spring),
+    visualPanelRotate: useSpring(useTransform(localChapterProgress, [0, 0.5, 1], [-7, 1, 7]), spring),
+    scanY: useSpring(useTransform(localChapterProgress, [0, 1], ['-35%', '135%']), spring),
+    orbitRotate: useTransform(scrollYProgress, [0, 1], [0, 720]),
   }
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
@@ -657,7 +665,7 @@ export default function ChronicleSection() {
     <section
       id="story"
       ref={containerRef}
-      style={{ height: `calc(${chapters.length * 100}vh + 100vh)` }}
+      style={{ height: `calc(${chapters.length * CHAPTER_SCROLL_VH}vh + 120vh)` }}
       className="relative"
     >
       {/* ── Sticky panel ── */}

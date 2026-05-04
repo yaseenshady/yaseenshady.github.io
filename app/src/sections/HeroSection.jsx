@@ -1,7 +1,14 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const EASE = [0.22, 1, 0.36, 1]
+
+const INTRO_LINES = [
+  'Depth',
+  'Rhythm',
+  'Motion',
+  'Systems',
+]
 
 function Magnetic({ children, strength = 0.22 }) {
   const ref = useRef(null)
@@ -57,6 +64,15 @@ export default function HeroSection({ reduceMotion }) {
   const textY = useTransform(scrollY, [0, 520], [0, -90])
   const glowScale = useTransform(scrollY, [0, 520], [1, 1.18])
   const glowOpacity = useTransform(scrollY, [0, 520], [0.55, 0.15])
+  const [introIdx, setIntroIdx] = useState(0)
+
+  useEffect(() => {
+    if (reduceMotion) return
+    const id = window.setInterval(() => {
+      setIntroIdx((current) => (current + 1) % INTRO_LINES.length)
+    }, 1350)
+    return () => window.clearInterval(id)
+  }, [reduceMotion])
 
   return (
     <section id="top" className="relative flex min-h-screen w-full items-center overflow-hidden">
@@ -73,28 +89,47 @@ export default function HeroSection({ reduceMotion }) {
         style={{ y: reduceMotion ? 0 : textY }}
         className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-24 pt-36 text-center sm:px-12"
       >
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.08, ease: EASE }}
-          className="mb-7 text-[10px] font-semibold uppercase tracking-[0.36em] text-[#ffd60a]"
+          className="mb-7 flex h-12 flex-col items-center justify-center gap-2"
         >
-          yaseenshady.github.io
-        </motion.p>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.36em] text-[#ffd60a]">
+            yaseenshady.github.io
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
+            {INTRO_LINES.map((line, index) => (
+              <motion.span
+                key={line}
+                animate={{
+                  opacity: introIdx === index ? 1 : 0.44,
+                  y: introIdx === index ? -2 : 0,
+                  filter: introIdx === index ? 'blur(0px)' : 'blur(0.8px)',
+                }}
+                transition={{ duration: 0.5, ease: EASE }}
+                className="rounded-full border border-yellow-200/10 bg-white/[0.045] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[rgba(240,237,228,0.82)]"
+                style={{ boxShadow: introIdx === index ? '0 0 24px rgba(255,214,10,0.18)' : 'none' }}
+              >
+                {line}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
 
         <h1
           className="font-black leading-[0.86] tracking-[-0.05em]"
           style={{ fontSize: 'clamp(4.5rem, 12vw, 10rem)', perspective: '800px' }}
         >
-          <RevealWord word="Yaseen" delay={0.15} />
+          <RevealWord word="Yaseen" delay={0.85} />
           <br />
-          <RevealWord word="Shady." delay={0.5} goldGradient />
+          <RevealWord word="Shady." delay={1.22} goldGradient />
         </h1>
 
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.15, ease: EASE }}
+          transition={{ duration: 0.7, delay: 2.05, ease: EASE }}
           className="mt-10 flex flex-wrap justify-center gap-3"
         >
           <Magnetic>
@@ -117,7 +152,7 @@ export default function HeroSection({ reduceMotion }) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 1 }}
+          transition={{ delay: 2.55, duration: 1 }}
           className="mt-24 flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-[rgba(240,237,228,0.18)]"
         >
           <motion.span
