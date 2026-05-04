@@ -8,6 +8,7 @@ const progressBar = select("[data-scroll-progress]");
 const orbitStage = select("[data-platform-orbit]");
 const particleField = select("[data-particles]");
 const contributionGrid = select("[data-contribution-grid]");
+const scrollScenes = selectAll("[data-scroll-scene]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const performanceStorageKey = "ys-performance-mode";
 
@@ -117,6 +118,21 @@ const setScrollProgress = () => {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const progress = scrollable <= 0 ? 0 : (window.scrollY / scrollable) * 100;
   progressBar.style.width = `${Math.min(progress, 100)}%`;
+};
+
+const updateScrollScenes = () => {
+  if (scrollScenes.length === 0) {
+    return;
+  }
+
+  scrollScenes.forEach((scene) => {
+    const rect = scene.getBoundingClientRect();
+    const scrollable = Math.max(1, scene.offsetHeight - window.innerHeight);
+    const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+    const flash = Math.max(0, 1 - Math.abs(progress - 0.56) * 8);
+    scene.style.setProperty("--scene-progress", progress.toFixed(4));
+    scene.style.setProperty("--scene-flash", flash.toFixed(4));
+  });
 };
 
 const positionOrbitChips = () => {
@@ -415,6 +431,7 @@ positionOrbitChips();
 setupTypedCommands();
 setupTilt();
 setScrollProgress();
+updateScrollScenes();
 initGsapMotion();
 
 // Safety net: force-reveal anything still hidden after 1.2s (covers GSAP CDN delays)
@@ -431,6 +448,10 @@ window.setTimeout(() => {
 window.addEventListener("resize", () => {
   positionOrbitChips();
   setScrollProgress();
+  updateScrollScenes();
 });
 
-window.addEventListener("scroll", setScrollProgress, { passive: true });
+window.addEventListener("scroll", () => {
+  setScrollProgress();
+  updateScrollScenes();
+}, { passive: true });
