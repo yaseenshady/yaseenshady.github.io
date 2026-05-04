@@ -11,6 +11,13 @@ import { useRef, useState } from 'react'
 const EASE = [0.22, 1, 0.36, 1]
 const CHAPTER_SCROLL_VH = 165
 
+const REALISTIC_ASSETS = {
+  scuba: '/story-assets/coral-reef.webp',
+  snow: '/story-assets/snowboarding.webp',
+  photo: '/story-assets/camera.webp',
+  code: '/story-assets/keyboard.webp',
+}
+
 /* ── Word-by-word animated sentence — re-animates on each new card ── */
 function AnimatedSentence({ text }) {
   const words = text.split(' ')
@@ -119,7 +126,73 @@ const chapters = [
   },
 ]
 
+function RealisticScene({ src, color, type }) {
+  return (
+    <div className="relative h-[18rem] w-[22rem] overflow-hidden rounded-[34px] border border-white/10 bg-black shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:h-[22rem] sm:w-[26rem]">
+      <motion.img
+        src={src}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        animate={{ scale: [1.05, 1.12, 1.05], x: ['-1.5%', '1.5%', '-1.5%'] }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,transparent_0%,rgba(0,0,0,0.04)_38%,rgba(0,0,0,0.62)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
+      <motion.div
+        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/15 to-transparent mix-blend-screen"
+        animate={{ opacity: [0.15, 0.42, 0.15], y: [-20, 26, -20] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      {type === 'scuba' && (
+        <>
+          {[0, 1, 2, 3, 4].map((bubble) => (
+            <motion.span
+              key={bubble}
+              className="absolute rounded-full border border-cyan-100/40 bg-cyan-100/10"
+              style={{ left: `${18 + bubble * 14}%`, bottom: `${10 + (bubble % 2) * 12}%`, width: 8 + bubble * 3, height: 8 + bubble * 3 }}
+              animate={{ y: [-8, -150], opacity: [0, 0.8, 0] }}
+              transition={{ duration: 4.8, delay: bubble * 0.5, repeat: Infinity, ease: 'easeOut' }}
+            />
+          ))}
+        </>
+      )}
+      {type === 'snow' && (
+        <motion.div
+          className="absolute bottom-10 left-6 h-20 w-48 rounded-full bg-white/20 blur-xl"
+          animate={{ x: [-18, 26, -18], opacity: [0.18, 0.42, 0.18] }}
+          transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      )}
+      {type === 'photo' && (
+        <motion.div
+          className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-100/20"
+          animate={{ scale: [0.88, 1.08, 0.88], opacity: [0.22, 0.55, 0.22] }}
+          transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      )}
+      {type === 'code' && (
+        <div className="absolute inset-x-5 bottom-5 flex gap-1">
+          {[0, 1, 2, 3, 4, 5, 6].map((bar) => (
+            <motion.span
+              key={bar}
+              className="h-1 flex-1 rounded-full"
+              style={{ background: color }}
+              animate={{ opacity: [0.25, 0.9, 0.25], scaleY: [1, 2.6, 1] }}
+              transition={{ duration: 1.4, delay: bar * 0.11, repeat: Infinity }}
+            />
+          ))}
+        </div>
+      )}
+      <div className="absolute inset-0 rounded-[34px] ring-1 ring-inset ring-white/10" />
+    </div>
+  )
+}
+
 function VisualGlyph({ type, color }) {
+  if (REALISTIC_ASSETS[type]) {
+    return <RealisticScene src={REALISTIC_ASSETS[type]} color={color} type={type} />
+  }
+
   if (type === 'scuba') {
     return (
       <div className="relative h-72 w-72 overflow-hidden rounded-[34px] border border-cyan-100/10 bg-gradient-to-b from-cyan-400/15 via-blue-950/55 to-black/70 shadow-[0_30px_110px_rgba(14,165,233,0.2)]">
@@ -507,7 +580,7 @@ function ChapterVisual({ ch, motionStyle }) {
         <motion.div
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="relative flex min-h-72 min-w-72 items-center justify-center overflow-hidden rounded-[36px]"
+          className="relative flex min-h-72 w-full min-w-0 items-center justify-center overflow-hidden rounded-[36px] sm:min-w-72"
           style={{
             background: `radial-gradient(circle at 50% 45%, ${ch.color}18 0%, ${ch.color}05 62%, transparent 72%)`,
             boxShadow: `0 0 70px ${ch.color}24, 0 0 130px ${ch.color}0f`,
@@ -725,6 +798,13 @@ export default function ChronicleSection() {
         {/* ── Two-column content area ── */}
         <div className="relative z-10 flex-1 flex items-center px-6 sm:px-12 pb-4">
           <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 items-center">
+
+            {/* MOBILE — chapter visual */}
+            <div className="flex h-[260px] items-center justify-center lg:hidden">
+              <AnimatePresence mode="wait">
+                <ChapterVisual key={`mobile-${activeIdx}`} ch={ch} motionStyle={motionStyle} />
+              </AnimatePresence>
+            </div>
 
             {/* LEFT — chapter card */}
             <div>

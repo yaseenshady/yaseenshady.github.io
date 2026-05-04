@@ -25,16 +25,38 @@ export default function Background() {
   const orb4Y = useTransform(smooth, [0, 1], ['90%', '65%'])
   const orb4Op = useTransform(smooth, [0, 0.6, 1], [0, 0.3, 0.6])
 
+  const ribbonY = useTransform(smooth, [0, 1], ['-10%', '18%'])
+  const ribbonRotate = useTransform(smooth, [0, 1], ['-10deg', '12deg'])
+  const glassY = useTransform(smooth, [0, 1], ['8%', '-18%'])
+
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#050505]" aria-hidden>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,214,10,0.08),transparent_44%),radial-gradient(ellipse_at_18%_70%,rgba(14,165,233,0.08),transparent_40%),radial-gradient(ellipse_at_84%_58%,rgba(244,114,182,0.06),transparent_38%)]" />
 
       {/* Dot grid — very subtle techy texture */}
       <div
-        className="absolute inset-0 opacity-[0.035]"
+        className="absolute inset-0 opacity-[0.045]"
         style={{
           backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)',
           backgroundSize: '36px 36px',
         }}
+      />
+
+      <motion.div
+        style={{ y: ribbonY, rotate: ribbonRotate }}
+        className="absolute left-1/2 top-[8%] h-[28rem] w-[120vw] -translate-x-1/2 rounded-[50%] opacity-60 blur-2xl"
+      >
+        <div
+          className="h-full w-full"
+          style={{
+            background: 'conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(255,214,10,0.10) 70deg, rgba(56,189,248,0.08) 150deg, transparent 250deg, rgba(255,255,255,0.05) 320deg, transparent 360deg)',
+          }}
+        />
+      </motion.div>
+
+      <motion.div
+        style={{ y: glassY }}
+        className="absolute inset-x-[8%] top-[18%] h-[34rem] rounded-[999px] border border-white/[0.035] bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.035),transparent)] blur-[1px]"
       />
 
       {/* Orb 1 — large warm gold anchor */}
