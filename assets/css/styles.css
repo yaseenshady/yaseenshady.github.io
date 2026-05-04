@@ -1102,11 +1102,13 @@ select {
   color: var(--muted);
 }
 
-.js-reveal {
+/* Hidden only when JS is active — prevents invisible content if scripts fail */
+.js-active .js-reveal {
   opacity: 0;
   transform: translate3d(0, 48px, 0);
 }
 
+.js-active .js-reveal.is-visible,
 .js-reveal.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0);
@@ -1174,17 +1176,28 @@ body[data-performance="light"] .glass-button {
 }
 
 @media (max-width: 1120px) {
+  /* Keep brand + actions on one row, nav wraps below */
   .topbar {
-    grid-template-columns: 1fr;
-    justify-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 18px;
   }
 
-  .topbar-nav {
-    justify-content: flex-start;
+  .brand-mark {
+    flex: 1 1 auto;
   }
 
   .topbar-actions {
-    justify-self: start;
+    flex: 0 0 auto;
+    order: 1;
+  }
+
+  .topbar-nav {
+    order: 2;
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .hero-layout,
@@ -1246,14 +1259,31 @@ body[data-performance="light"] .glass-button {
 }
 
 @media (max-width: 640px) {
+  /* Topbar: stack brand → nav → actions vertically on small screens */
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: 12px;
+  }
+
+  .brand-mark {
+    flex: none;
+  }
+
   .topbar-nav,
-  .topbar-actions,
-  .hero-actions {
+  .topbar-actions {
+    order: 0;
     width: 100%;
   }
 
-  .topbar-actions,
+  .topbar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .hero-actions {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr;
   }
@@ -1269,12 +1299,26 @@ body[data-performance="light"] .glass-button {
     grid-template-columns: 1fr;
   }
 
-  .flagship-card__header,
-  .terminal-head,
-  .oss-graph__header,
-  .site-footer {
+  /* These are already grid — just override the column count */
+  .flagship-card__header {
     grid-template-columns: 1fr;
-    display: grid;
+  }
+
+  /* These are flex — stack them instead of switching to grid */
+  .terminal-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .oss-graph__header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    gap: 8px;
   }
 
   .hero-core {

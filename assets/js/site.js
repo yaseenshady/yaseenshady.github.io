@@ -243,9 +243,9 @@ const initGsapMotion = () => {
   revealNodes.forEach((node) => {
     gsap.fromTo(
       node,
-      { autoAlpha: 0, y: 48 },
+      { opacity: 0, y: 48 },
       {
-        autoAlpha: 1,
+        opacity: 1,
         y: 0,
         duration: 0.9,
         ease: "power3.out",
@@ -400,6 +400,17 @@ setupTypedCommands();
 setupTilt();
 setScrollProgress();
 initGsapMotion();
+
+// Safety net: force-reveal anything still hidden after 1.2s (covers GSAP CDN delays)
+window.setTimeout(() => {
+  selectAll(".js-reveal").forEach((node) => {
+    // Strip any inline visibility/opacity/transform GSAP may have left behind
+    node.style.visibility = "";
+    node.style.opacity = "";
+    node.style.transform = "";
+    node.classList.add("is-visible");
+  });
+}, 1200);
 
 window.addEventListener("resize", () => {
   positionOrbitChips();
