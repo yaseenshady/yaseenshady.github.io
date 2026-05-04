@@ -346,6 +346,67 @@ const initGsapMotion = () => {
     ease: "sine.inOut",
   });
 
+  if (select(".hero-render")) {
+    gsap.fromTo(
+      ".hero-render",
+      { opacity: 0, y: 44, scale: 0.98 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1,
+        ease: "power3.out",
+      }
+    );
+
+    gsap.to(".hero-render", {
+      yPercent: -2,
+      scale: 1.02,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section--restored",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }
+
+  const sceneStages = gsap.utils.toArray(".scene-stage");
+  sceneStages.forEach((stage) => {
+    const trigger = stage.closest("[data-scroll-scene]") || stage;
+
+    gsap.fromTo(
+      stage,
+      {
+        opacity: 0.78,
+        scale: 1.08,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+  });
+
+  if (select(".beyond-card__animation--real")) {
+    gsap.to(".beyond-card__animation--real", {
+      y: (index) => (index % 2 === 0 ? -8 : -4),
+      duration: 3.4,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.18,
+    });
+  }
+
   const timelineSteps = gsap.utils.toArray("[data-timeline-step]");
   const timelineFill = select("[data-timeline-progress]");
 
