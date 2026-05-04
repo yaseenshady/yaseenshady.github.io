@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   featureCards,
@@ -15,8 +15,7 @@ import JourneySection from "./sections/JourneySection";
 import MetricsSection from "./sections/MetricsSection";
 import ProblemSection from "./sections/ProblemSection";
 import ProductSection from "./sections/ProductSection";
-
-const SceneCanvas = lazy(() => import("./components/SceneCanvas"));
+import SceneStage from "./components/SceneStage";
 
 export default function App() {
   const { scrollYProgress } = useScroll();
@@ -50,11 +49,7 @@ export default function App() {
           style={{ opacity: gridOpacity }}
           className="absolute inset-0 bg-grid bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]"
         />
-        {!reduceMotion && (
-          <Suspense fallback={null}>
-            <SceneCanvas progress={sceneProgress} />
-          </Suspense>
-        )}
+        <SceneStage progress={sceneProgress} reduceMotion={reduceMotion} />
       </div>
 
       <header className="fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6">
