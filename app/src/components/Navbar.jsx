@@ -2,11 +2,10 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useState } from 'react'
 
 const links = [
-  { label: 'Origin',     href: '#about'  },
-  { label: 'Experience', href: '#work'   },
-  { label: 'Builds',     href: '#builds' },
-  { label: 'Life',       href: '#life'   },
-  { label: 'Contact',    href: '#cta'    },
+  { label: 'Story',   href: '#story'  },
+  { label: 'Builds',  href: '#builds' },
+  { label: 'Life',    href: '#life'   },
+  { label: 'Contact', href: '#cta'    },
 ]
 
 export default function Navbar() {
