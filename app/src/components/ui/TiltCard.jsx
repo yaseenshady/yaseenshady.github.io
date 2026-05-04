@@ -1,4 +1,10 @@
-import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
 
 export default function TiltCard({ className = "", children }) {
   const reduceMotion = useReducedMotion();
@@ -6,6 +12,7 @@ export default function TiltCard({ className = "", children }) {
   const rotateY = useSpring(0, { stiffness: 180, damping: 18, mass: 0.6 });
   const glareX = useMotionValue(50);
   const glareY = useMotionValue(50);
+  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.22), transparent 34%)`;
 
   const handleMove = (event) => {
     if (reduceMotion) return;
@@ -37,12 +44,7 @@ export default function TiltCard({ className = "", children }) {
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: glareX.to(
-            (x) =>
-              `radial-gradient(circle at ${x}% ${glareY.get()}%, rgba(255,255,255,0.22), transparent 34%)`,
-          ),
-        }}
+        style={{ background: glareBackground }}
       />
       <div className="relative h-full">{children}</div>
     </motion.div>
