@@ -92,26 +92,26 @@ export default function HeroSection({ reduceMotion }) {
           </AnimatePresence>
         </motion.div>
 
-        {/* Bio — glass ball container */}
+        {/* Bio — glass ball container, punchy lines */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.65, ease: EASE }}
-          className="glass-ball rounded-2xl p-6 mb-8 max-w-2xl"
+          className="glass-ball rounded-2xl p-6 mb-8 max-w-xl"
         >
-          <p className="text-[1.05rem] leading-[1.9] text-[rgba(240,237,228,0.72)]">
-            Computer enthusiast and AI technologist with over a decade of programming
-            experience, starting self-taught in{' '}
-            <span className="text-[#f0ede4] font-semibold">Egypt at age 12.</span>{' '}
-            After moving to the SF Bay Area, I developed a passion for the intersection of
-            AI, algorithmic trading, and data science — earning professional certifications
-            in 2019. Through the{' '}
-            <span className="text-[#f0ede4] font-semibold">Middle College program,</span>{' '}
-            I replaced my final two years of high school with college-level CS courses.
-            Now building at{' '}
-            <span className="text-[#f0ede4] font-semibold">Microsoft.</span>{' '}
-            Outside of tech: scuba diver, snowboarder, DJ, guitarist, photographer.
-          </p>
+          <ul className="space-y-2.5">
+            {[
+              { mark: '🇪🇬', text: 'Self-taught from scratch in Egypt at 12.' },
+              { mark: '🌉', text: 'Fell into AI, trading & data science in the Bay Area.' },
+              { mark: '🚀', text: 'Replaced 2 years of high school with college CS.' },
+              { mark: '⚡', text: 'Now building distributed systems at Microsoft.' },
+            ].map(({ mark, text }) => (
+              <li key={text} className="flex items-start gap-3 text-[0.97rem] leading-relaxed text-[rgba(240,237,228,0.68)]">
+                <span className="mt-0.5 text-base flex-shrink-0">{mark}</span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ul>
         </motion.div>
 
         {/* Hobby pills — glass ball style */}
