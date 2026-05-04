@@ -14,7 +14,7 @@ const EASE = [0.22, 1, 0.36, 1]
 function AnimatedSentence({ text }) {
   const words = text.split(' ')
   return (
-    <p className="text-[1.08rem] leading-[1.9] text-[rgba(240,237,228,0.62)]">
+    <p className="text-[1.02rem] leading-[1.75] text-[rgba(240,237,228,0.62)]">
       {words.map((word, i) => (
         <motion.span
           key={i}
@@ -34,59 +34,193 @@ function AnimatedSentence({ text }) {
 const chapters = [
   {
     year: '2012', place: 'Egypt',
-    color: '#ffd60a', icon: '💻',
-    title: 'The spark.',
-    sentence: 'Age 12. No classroom, no teacher — just a computer and relentless curiosity that became a decade of building.',
+    color: '#ffd60a', visual: 'code',
+    title: 'A kid and a keyboard.',
+    sentence: 'Age 12 in Egypt. I taught myself by going deeper every night.',
   },
   {
     year: '2019', place: 'SF Bay Area',
-    color: '#ffd60a', icon: '🧠',
-    title: 'Found the edge.',
-    sentence: 'Fell into AI, algorithmic trading, and data science — earning certifications because the intersection felt like the most interesting problem on earth.',
+    color: '#ffd60a', visual: 'network',
+    title: 'The map opened.',
+    sentence: 'The Bay Area pulled me toward AI, markets, data, and sharper ambition.',
   },
   {
     year: '2020', place: 'Middle College',
-    color: '#ffd60a', icon: '🚀',
+    color: '#ffd60a', visual: 'cards',
     title: 'Skipped the queue.',
-    sentence: 'Replaced my final two years of high school with college-level computer science courses. Traditional timelines weren\'t moving fast enough.',
+    sentence: 'I traded the normal timeline for college computer science and momentum.',
   },
   {
     year: 'Jul 2022', place: 'Microsoft ATL · Cairo',
-    color: '#00a4ef', icon: '🏢',
-    title: 'First internship.',
-    sentence: 'Built a meeting summarizer at Microsoft in Cairo — transcripts, keywords, summaries, and video in one unified interface backed by Azure Cosmos DB.',
+    color: '#00a4ef', visual: 'microsoft',
+    title: 'First Microsoft build.',
+    sentence: 'A meeting summarizer: transcript, keywords, video, and Azure data in one flow.',
   },
   {
     year: 'Jan–Apr 2022', place: 'U.S. State Department',
-    color: '#34d399', icon: '📄',
-    title: 'Published research.',
-    sentence: 'Built a misinformation detection toolkit for State Department senior leadership — my name is listed on the published research paper.',
+    color: '#34d399', visual: 'research',
+    title: 'Signal from noise.',
+    sentence: 'Research became a toolkit for detecting misinformation at global scale.',
   },
   {
     year: 'May–Aug 2023', place: 'Microsoft Gray Systems Lab',
-    color: '#00a4ef', icon: '🗄️',
-    title: 'Open source.',
-    sentence: 'Pioneered applying MLOS — Microsoft\'s ML-assisted tuning framework — to MariaDB. Scripts merged directly into the open-source project.',
+    color: '#00a4ef', visual: 'database',
+    title: 'Tuning the engine.',
+    sentence: 'I connected ML-assisted optimization to MariaDB and pushed it into open source.',
   },
   {
     year: '2023 – 2025', place: 'Amunet · Solo Founder',
-    color: '#ffd60a', icon: '📱',
-    title: 'Solo founder.',
-    sentence: 'Built an iOS app from zero and shipped it globally alone — SwiftUI, the site, the legal entity. 100 downloads in the first month. Everything, solo.',
+    color: '#ffd60a', visual: 'phone',
+    title: 'Built alone.',
+    sentence: 'SwiftUI, website, legal entity, App Store launch. The whole loop, solo.',
   },
   {
     year: 'May–Aug 2024', place: 'Microsoft Gray Systems Lab',
-    color: '#00a4ef', icon: '📊',
+    color: '#00a4ef', visual: 'chart',
     title: '50% faster.',
-    sentence: 'Discovered a 50% improvement in P95 latency for the TPC-C benchmark. Work cited in the SIGMOD 2025 autotuning tutorial.',
+    sentence: 'A benchmark GUI uncovered a 50% P95 latency improvement.',
   },
   {
     year: 'Now', place: 'Microsoft · Redmond',
-    color: '#00a4ef', icon: '⚡',
+    color: '#00a4ef', visual: 'system',
     title: 'Building at scale.',
-    sentence: 'Full-time Software Engineer at Microsoft — distributed systems, ML-assisted performance tuning, and developer tooling at scale. Just getting started.',
+    sentence: 'Distributed systems, AI-assisted tuning, and tools that make complex work usable.',
   },
 ]
+
+function VisualGlyph({ type, color }) {
+  if (type === 'code') {
+    return (
+      <div className="relative h-48 w-64 rounded-[30px] border border-white/10 bg-black/45 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+        {[0, 1, 2, 3].map((line) => (
+          <motion.span
+            key={line}
+            className="mb-4 block h-2 rounded-full"
+            style={{ background: line === 1 ? color : 'rgba(240,237,228,0.18)', width: `${52 + line * 12}%` }}
+            animate={{ opacity: [0.35, 1, 0.35], x: [0, 12, 0] }}
+            transition={{ duration: 2.4, delay: line * 0.18, repeat: Infinity }}
+          />
+        ))}
+        <motion.div className="absolute -bottom-8 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border border-yellow-200/25"
+          animate={{ scale: [0.85, 1.18, 0.85], opacity: [0.25, 0.7, 0.25] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        />
+      </div>
+    )
+  }
+
+  if (type === 'network' || type === 'system') {
+    const nodes = [[50, 18], [22, 48], [74, 44], [38, 76], [66, 78]]
+    return (
+      <div className="relative h-64 w-72">
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100">
+          <path d="M50 18 L22 48 L38 76 L66 78 L74 44 Z M22 48 L74 44 M50 18 L66 78" fill="none" stroke={color} strokeOpacity="0.35" strokeWidth="0.7" />
+        </svg>
+        {nodes.map(([left, top], index) => (
+          <motion.span
+            key={index}
+            className="absolute h-8 w-8 rounded-full border border-white/15 bg-black/50"
+            style={{ left: `${left}%`, top: `${top}%`, boxShadow: `0 0 34px ${color}44` }}
+            animate={{ scale: [0.9, 1.18, 0.9], opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2.8, delay: index * 0.2, repeat: Infinity }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'cards') {
+    return (
+      <div className="relative h-60 w-72">
+        {[0, 1, 2].map((card) => (
+          <motion.div
+            key={card}
+            className="absolute left-1/2 top-1/2 h-36 w-48 rounded-[24px] border border-white/10 bg-white/[0.055] backdrop-blur-xl"
+            style={{ marginLeft: -96, marginTop: -72, rotate: `${-10 + card * 10}deg`, y: -card * 18 }}
+            animate={{ y: [-card * 18, -card * 18 - 14, -card * 18], rotateX: [8, -4, 8] }}
+            transition={{ duration: 3.4, delay: card * 0.18, repeat: Infinity }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'microsoft') {
+    return (
+      <div className="grid h-52 w-52 grid-cols-2 gap-3">
+        {[0, 1, 2, 3].map((tile) => (
+          <motion.div
+            key={tile}
+            className="rounded-[22px] border border-white/10 bg-white/[0.045]"
+            style={{ boxShadow: `0 0 44px ${color}24` }}
+            animate={{ y: [0, tile % 2 ? 10 : -10, 0], opacity: [0.55, 1, 0.55] }}
+            transition={{ duration: 3, delay: tile * 0.16, repeat: Infinity }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'research') {
+    return (
+      <div className="relative h-60 w-56 rounded-[26px] border border-white/10 bg-white/[0.05] p-6">
+        {[0, 1, 2, 3, 4].map((line) => <span key={line} className="mb-4 block h-2 rounded-full bg-white/15" style={{ width: `${88 - line * 10}%` }} />)}
+        <motion.div className="absolute left-0 right-0 top-10 h-px" style={{ background: color }}
+          animate={{ y: [0, 150, 0], opacity: [0.2, 0.9, 0.2] }}
+          transition={{ duration: 2.6, repeat: Infinity }}
+        />
+      </div>
+    )
+  }
+
+  if (type === 'database') {
+    return (
+      <div className="relative h-60 w-64">
+        {[0, 1, 2, 3].map((disk) => (
+          <motion.div
+            key={disk}
+            className="absolute left-1/2 h-16 w-56 -translate-x-1/2 rounded-[50%] border border-white/10 bg-white/[0.045]"
+            style={{ bottom: `${disk * 34}px`, boxShadow: `0 0 42px ${color}1f` }}
+            animate={{ x: [0, disk % 2 ? 8 : -8, 0] }}
+            transition={{ duration: 2.8, delay: disk * 0.14, repeat: Infinity }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'phone') {
+    return (
+      <motion.div className="relative h-64 w-36 rounded-[32px] border border-white/15 bg-black/55 p-3 shadow-[0_30px_100px_rgba(0,0,0,0.5)]"
+        animate={{ rotateZ: [-5, 5, -5] }}
+        transition={{ duration: 4, repeat: Infinity }}
+      >
+        <div className="h-full rounded-[24px] border border-white/10 bg-gradient-to-b from-yellow-200/15 to-white/[0.02]" />
+        <motion.span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full border border-yellow-200/40"
+          animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.25, 0.8, 0.25] }}
+          transition={{ duration: 2.8, repeat: Infinity }}
+        />
+      </motion.div>
+    )
+  }
+
+  if (type === 'chart') {
+    return (
+      <div className="flex h-56 w-72 items-end justify-center gap-4 rounded-[30px] border border-white/10 bg-white/[0.035] p-8">
+        {[44, 70, 96, 128, 168].map((height, index) => (
+          <motion.div
+            key={height}
+            className="w-8 rounded-t-2xl bg-gradient-to-t from-yellow-600/70 to-yellow-200/80"
+            animate={{ height: [height * 0.55, height, height * 0.62] }}
+            transition={{ duration: 2.4, delay: index * 0.13, repeat: Infinity }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  return null
+}
 
 /* ── Right-side visual panel ───────────────────────────────────── */
 function ChapterVisual({ ch, motionStyle }) {
@@ -148,18 +282,17 @@ function ChapterVisual({ ch, motionStyle }) {
         transition={{ duration: 0.55, delay: 0.1, ease: EASE }}
         className="relative z-10 flex flex-col items-center gap-4"
       >
-        {/* Icon container */}
+        {/* Story-specific visual */}
         <motion.div
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-36 h-36 rounded-3xl flex items-center justify-center text-7xl"
+          className="flex min-h-72 min-w-72 items-center justify-center rounded-[36px]"
           style={{
-            background: `radial-gradient(circle at 35% 35%, ${ch.color}22 0%, ${ch.color}08 70%)`,
-            boxShadow: `0 0 60px ${ch.color}30, 0 0 120px ${ch.color}12, inset 0 1px 0 rgba(255,255,255,0.1)`,
-            border: `1px solid ${ch.color}30`,
+            background: `radial-gradient(circle at 50% 45%, ${ch.color}18 0%, ${ch.color}05 62%, transparent 72%)`,
+            boxShadow: `0 0 70px ${ch.color}24, 0 0 130px ${ch.color}0f`,
           }}
         >
-          {ch.icon}
+          <VisualGlyph type={ch.visual} color={ch.color} />
         </motion.div>
 
         <motion.div
@@ -330,7 +463,7 @@ export default function ChronicleSection() {
                 The story
               </p>
               <h2 className="text-2xl font-black tracking-normal text-[#f0ede4]">
-                Every chapter, in order.
+                Deeper with every scroll.
               </h2>
             </div>
 
