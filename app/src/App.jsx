@@ -12,7 +12,7 @@ import CtaSection       from './sections/CtaSection'
 export default function App() {
   const reduceMotion = useReducedMotion()
   return (
-    <div className="relative bg-[#050505] text-[#f0ede4] overflow-x-hidden">
+    <div className="relative bg-[#050505] text-[#f0ede4]" style={{ overflowX: 'clip' }}>
       <Cursor />
       <Background />
       <div className="relative z-10">
