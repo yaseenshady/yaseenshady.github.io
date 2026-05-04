@@ -1102,13 +1102,6 @@ select {
   color: var(--muted);
 }
 
-/* Hidden only when JS is active — prevents invisible content if scripts fail */
-.js-active .js-reveal {
-  opacity: 0;
-  transform: translate3d(0, 48px, 0);
-}
-
-.js-active .js-reveal.is-visible,
 .js-reveal.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0);

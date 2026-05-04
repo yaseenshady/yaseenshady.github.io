@@ -11,7 +11,23 @@ const contributionGrid = select("[data-contribution-grid]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const performanceStorageKey = "ys-performance-mode";
 
-const savedPerformanceMode = localStorage.getItem(performanceStorageKey);
+const readPerformanceMode = () => {
+  try {
+    return localStorage.getItem(performanceStorageKey);
+  } catch {
+    return null;
+  }
+};
+
+const writePerformanceMode = (mode) => {
+  try {
+    localStorage.setItem(performanceStorageKey, mode);
+  } catch {
+    // Storage can be unavailable in private, embedded, or restricted contexts.
+  }
+};
+
+const savedPerformanceMode = readPerformanceMode();
 body.dataset.performance = savedPerformanceMode === "light" ? "light" : "full";
 
 if (yearNode) {
@@ -32,7 +48,7 @@ updatePerformanceButton();
 if (performanceToggle) {
   performanceToggle.addEventListener("click", () => {
     const nextMode = body.dataset.performance === "light" ? "full" : "light";
-    localStorage.setItem(performanceStorageKey, nextMode);
+    writePerformanceMode(nextMode);
     window.location.reload();
   });
 }
