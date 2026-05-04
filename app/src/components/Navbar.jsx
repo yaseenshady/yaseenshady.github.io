@@ -65,7 +65,7 @@ export default function Navbar() {
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/yaseenshady/"
+              href="https://www.linkedin.com/in/yaseen-shady/"
               target="_blank"
               rel="noreferrer"
               className="btn-glass px-4 py-2 text-[11px] uppercase tracking-widest text-[#ffd60a]"

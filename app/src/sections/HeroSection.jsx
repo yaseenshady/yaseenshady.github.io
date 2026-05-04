@@ -103,7 +103,7 @@ export default function HeroSection({ reduceMotion }) {
             </a>
           </Magnetic>
           <Magnetic>
-            <a href="https://www.linkedin.com/in/yaseenshady/" target="_blank" rel="noreferrer" className="btn-glass">
+            <a href="https://www.linkedin.com/in/yaseen-shady/" target="_blank" rel="noreferrer" className="btn-glass">
               LinkedIn
             </a>
           </Magnetic>
