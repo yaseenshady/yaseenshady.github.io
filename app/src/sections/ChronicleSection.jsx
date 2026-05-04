@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useRef, useState, useEffect, forwardRef } from 'react'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -462,9 +463,9 @@ const chapters = [
 
 /* ── Chapter card ─────────────────────────────────────────────── */
 
-function Chapter({ ch, index }) {
+const Chapter = forwardRef(function Chapter({ ch, index }, ref) {
   return (
-    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center py-20 border-t border-[rgba(255,255,255,0.04)]">
+    <div ref={ref} className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center py-20 border-t border-[rgba(255,255,255,0.04)]">
 
       {/* Year watermark */}
       <motion.span
@@ -512,14 +513,49 @@ function Chapter({ ch, index }) {
       </motion.div>
     </div>
   )
-}
+})
 
 /* ── Section ──────────────────────────────────────────────────── */
 
 export default function ChronicleSection({ reduceMotion }) {
+  const [activeIdx, setActiveIdx] = useState(0)
+  const itemRefs = useRef([])
+
+  useEffect(() => {
+    const observers = itemRefs.current.map((el, i) => {
+      if (!el) return null
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveIdx(i) },
+        { rootMargin: '-35% 0px -35% 0px', threshold: 0 }
+      )
+      obs.observe(el)
+      return obs
+    })
+    return () => observers.forEach(o => o?.disconnect())
+  }, [])
+
   return (
     <section id="story" className="relative px-6 sm:px-12 py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_30%_at_50%_0%,rgba(255,214,10,0.05),transparent)]" />
+
+      {/* ── Chapter progress dots — fixed right side, desktop only ── */}
+      <div className="hidden lg:flex fixed right-5 top-1/2 -translate-y-1/2 z-40 flex-col gap-2.5">
+        {chapters.map((ch, i) => (
+          <motion.button
+            key={i}
+            animate={{
+              scale:           activeIdx === i ? 1.5 : 1,
+              backgroundColor: activeIdx === i ? ch.color : 'rgba(255,255,255,0.18)',
+              boxShadow:       activeIdx === i ? `0 0 10px ${ch.color}60` : 'none',
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+            title={ch.title}
+            onClick={() => itemRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+            className="w-2 h-2 rounded-full cursor-pointer"
+            aria-label={`Go to chapter: ${ch.title}`}
+          />
+        ))}
+      </div>
 
       <div className="mx-auto max-w-5xl">
 
@@ -545,7 +581,12 @@ export default function ChronicleSection({ reduceMotion }) {
         {/* Chapters */}
         <div>
           {chapters.map((ch, i) => (
-            <Chapter key={ch.year + ch.place} ch={ch} index={i} />
+            <Chapter
+              key={ch.year + ch.place}
+              ch={ch}
+              index={i}
+              ref={el => { itemRefs.current[i] = el }}
+            />
           ))}
         </div>
       </div>
