@@ -33,16 +33,46 @@ function AnimatedSentence({ text }) {
 /* ── Chapter data ──────────────────────────────────────────────── */
 const chapters = [
   {
+    year: 'Depth', place: 'Scuba',
+    color: '#38bdf8', visual: 'scuba',
+    title: 'Calm under pressure.',
+    sentence: 'Underwater, every movement matters. That patience follows me back into code.',
+  },
+  {
+    year: 'Tone', place: 'Guitar',
+    color: '#ffd60a', visual: 'guitar',
+    title: 'Tiny changes, real feedback.',
+    sentence: 'A Strat, a chord, a better take. Practice becomes instinct.',
+  },
+  {
+    year: 'Mix', place: 'DJ',
+    color: '#f472b6', visual: 'dj',
+    title: 'Read the room.',
+    sentence: 'DJing is timing, transition, and keeping energy alive in real time.',
+  },
+  {
+    year: 'Line', place: 'Snowboarding',
+    color: '#e0f2fe', visual: 'snow',
+    title: 'Commit at speed.',
+    sentence: 'Read terrain, absorb impact, keep moving. Balance is a decision.',
+  },
+  {
+    year: 'Frame', place: 'Photography',
+    color: '#a78bfa', visual: 'photo',
+    title: 'Choose the focus.',
+    sentence: 'Photography taught me to notice signal before the moment disappears.',
+  },
+  {
     year: '2012', place: 'Egypt',
     color: '#ffd60a', visual: 'code',
     title: 'A kid and a keyboard.',
-    sentence: 'Age 12 in Egypt. I taught myself by going deeper every night.',
+    sentence: 'At 12, curiosity became code.',
   },
   {
     year: '2019', place: 'SF Bay Area',
     color: '#ffd60a', visual: 'network',
     title: 'The map opened.',
-    sentence: 'The Bay Area pulled me toward AI, markets, data, and sharper ambition.',
+    sentence: 'AI, markets, and data gave the curiosity direction.',
   },
   {
     year: '2020', place: 'Middle College',
@@ -51,37 +81,37 @@ const chapters = [
     sentence: 'I traded the normal timeline for college computer science and momentum.',
   },
   {
-    year: 'Jul 2022', place: 'Microsoft ATL · Cairo',
+    year: 'Jul 2022', place: 'Microsoft ATL - Cairo',
     color: '#00a4ef', visual: 'microsoft',
     title: 'First Microsoft build.',
-    sentence: 'A meeting summarizer: transcript, keywords, video, and Azure data in one flow.',
+    sentence: 'Transcript, keywords, video, and Azure data in one meeting flow.',
   },
   {
-    year: 'Jan–Apr 2022', place: 'U.S. State Department',
+    year: 'Jan-Apr 2022', place: 'U.S. State Department',
     color: '#34d399', visual: 'research',
     title: 'Signal from noise.',
-    sentence: 'Research became a toolkit for detecting misinformation at global scale.',
+    sentence: 'Research became a toolkit for spotting misinformation at scale.',
   },
   {
-    year: 'May–Aug 2023', place: 'Microsoft Gray Systems Lab',
+    year: '2023', place: 'Microsoft Gray Systems Lab',
     color: '#00a4ef', visual: 'database',
     title: 'Tuning the engine.',
-    sentence: 'I connected ML-assisted optimization to MariaDB and pushed it into open source.',
+    sentence: 'ML-assisted database optimization moved from experiment into open source.',
   },
   {
-    year: '2023 – 2025', place: 'Amunet · Solo Founder',
+    year: '2023-2025', place: 'Amunet - Solo Founder',
     color: '#ffd60a', visual: 'phone',
     title: 'Built alone.',
-    sentence: 'SwiftUI, website, legal entity, App Store launch. The whole loop, solo.',
+    sentence: 'SwiftUI, website, legal setup, App Store launch. The whole loop.',
   },
   {
-    year: 'May–Aug 2024', place: 'Microsoft Gray Systems Lab',
+    year: '2024', place: 'Microsoft Gray Systems Lab',
     color: '#00a4ef', visual: 'chart',
     title: '50% faster.',
-    sentence: 'A benchmark GUI uncovered a 50% P95 latency improvement.',
+    sentence: 'A benchmark GUI surfaced a 50% P95 latency improvement.',
   },
   {
-    year: 'Now', place: 'Microsoft · Redmond',
+    year: 'Now', place: 'Microsoft - Redmond',
     color: '#00a4ef', visual: 'system',
     title: 'Building at scale.',
     sentence: 'Distributed systems, AI-assisted tuning, and tools that make complex work usable.',
@@ -89,6 +119,196 @@ const chapters = [
 ]
 
 function VisualGlyph({ type, color }) {
+  if (type === 'scuba') {
+    return (
+      <div className="relative h-72 w-72 overflow-hidden rounded-[34px] border border-cyan-100/10 bg-gradient-to-b from-cyan-400/15 via-blue-950/55 to-black/70 shadow-[0_30px_110px_rgba(14,165,233,0.2)]">
+        {[0, 1, 2, 3].map((beam) => (
+          <motion.span
+            key={beam}
+            className="absolute -top-16 h-72 w-8 origin-top rounded-full bg-cyan-100/10 blur-sm"
+            style={{ left: `${20 + beam * 17}%`, rotate: `${-16 + beam * 7}deg` }}
+            animate={{ opacity: [0.08, 0.22, 0.08], y: [0, 16, 0] }}
+            transition={{ duration: 4 + beam * 0.25, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        ))}
+        {[0, 1, 2, 3, 4, 5].map((bubble) => (
+          <motion.span
+            key={bubble}
+            className="absolute rounded-full border border-cyan-100/40 bg-cyan-100/10"
+            style={{
+              left: `${18 + bubble * 12}%`,
+              bottom: `${12 + (bubble % 3) * 16}%`,
+              width: `${8 + bubble * 2}px`,
+              height: `${8 + bubble * 2}px`,
+            }}
+            animate={{ y: [-6, -118], x: [0, bubble % 2 ? 12 : -10], opacity: [0, 0.85, 0] }}
+            transition={{ duration: 4.2, delay: bubble * 0.45, repeat: Infinity, ease: 'easeOut' }}
+          />
+        ))}
+        <motion.div
+          className="absolute left-20 top-28 h-8 w-24 rounded-full bg-slate-200/90 shadow-[0_0_24px_rgba(186,230,253,0.35)]"
+          animate={{ x: [0, 18, 0], y: [0, -8, 0], rotate: [-8, -3, -8] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <span className="absolute -right-6 top-2 h-4 w-9 rounded-full border border-cyan-100/80" />
+          <span className="absolute -left-7 top-2 h-4 w-9 rounded-full border border-cyan-100/70" />
+          <span className="absolute left-8 -bottom-9 h-10 w-3 rounded-full bg-yellow-300/80 rotate-12" />
+          <span className="absolute left-14 -bottom-10 h-10 w-3 rounded-full bg-yellow-300/80 -rotate-12" />
+        </motion.div>
+        {[0, 1, 2, 3].map((coral) => (
+          <motion.span
+            key={coral}
+            className="absolute bottom-0 rounded-t-full"
+            style={{
+              left: `${18 + coral * 18}%`,
+              width: `${18 + coral * 3}px`,
+              height: `${52 + coral * 9}px`,
+              background: coral % 2 ? 'rgba(251,113,133,0.55)' : 'rgba(45,212,191,0.48)',
+              transformOrigin: 'bottom center',
+            }}
+            animate={{ rotate: [-4, 5, -4] }}
+            transition={{ duration: 3.4 + coral * 0.25, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'guitar') {
+    return (
+      <div className="relative h-64 w-80">
+        <motion.div
+          className="absolute left-12 top-28 h-24 w-32 rounded-[48%_52%_45%_55%/42%_48%_52%_58%] border border-yellow-100/20 bg-gradient-to-br from-yellow-300/85 via-amber-500/75 to-black/55 shadow-[0_30px_90px_rgba(255,214,10,0.18)]"
+          animate={{ rotate: [-5, 2, -5], y: [0, -7, 0] }}
+          transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <span className="absolute right-7 top-5 h-16 w-9 rounded-full bg-black/35" />
+          <span className="absolute left-7 top-6 h-10 w-20 rounded-[60%_40%_45%_55%] border border-white/40 bg-white/25" />
+          {[0, 1, 2].map((pickup) => (
+            <span key={pickup} className="absolute h-3 w-14 rounded-full bg-white/70" style={{ left: 44 + pickup * 13, top: 44 + pickup * 9, rotate: '-14deg' }} />
+          ))}
+        </motion.div>
+        <motion.div
+          className="absolute left-36 top-[9.2rem] h-8 w-40 rounded-full bg-gradient-to-r from-amber-900/80 to-yellow-200/70"
+          animate={{ rotate: [-2, 1.5, -2] }}
+          transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          {[0, 1, 2, 3, 4, 5].map((string) => (
+            <motion.span
+              key={string}
+              className="absolute left-0 right-0 h-px bg-white/55"
+              style={{ top: 6 + string * 3 }}
+              animate={{ x: [0, string % 2 ? 3 : -3, 0] }}
+              transition={{ duration: 0.22, delay: string * 0.02, repeat: Infinity }}
+            />
+          ))}
+        </motion.div>
+        <div className="absolute right-0 top-[8.6rem] h-12 w-20 rounded-xl border border-white/10 bg-black/60">
+          {[0, 1, 2, 3, 4, 5].map((knob) => <span key={knob} className="absolute h-1 w-1 rounded-full bg-yellow-200/70" style={{ left: 14 + knob * 9, top: 10 }} />)}
+        </div>
+        {[0, 1, 2].map((wave) => (
+          <motion.span
+            key={wave}
+            className="absolute right-3 top-24 h-24 w-24 rounded-full border border-yellow-200/30"
+            animate={{ scale: [0.45, 1.05], opacity: [0.45, 0] }}
+            transition={{ duration: 1.8, delay: wave * 0.45, repeat: Infinity }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'dj') {
+    return (
+      <div className="relative h-60 w-80 rounded-[34px] border border-pink-100/10 bg-black/55 p-7 shadow-[0_30px_110px_rgba(244,114,182,0.16)]">
+        {[0, 1].map((deck) => (
+          <motion.div
+            key={deck}
+            className="absolute top-14 h-28 w-28 rounded-full border border-pink-100/20 bg-[radial-gradient(circle,rgba(244,114,182,0.85)_0_8%,rgba(255,255,255,0.16)_9%_12%,rgba(0,0,0,0.8)_13%_100%)]"
+            style={{ left: deck ? 190 : 28 }}
+            animate={{ rotate: deck ? [360, 0] : [0, 360] }}
+            transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
+          />
+        ))}
+        <div className="absolute left-1/2 top-12 h-36 w-16 -translate-x-1/2 rounded-2xl border border-white/10 bg-white/[0.04]">
+          {[0, 1, 2].map((slider) => (
+            <motion.span
+              key={slider}
+              className="absolute left-4 h-2 w-8 rounded-full bg-pink-200/80"
+              style={{ top: 20 + slider * 34 }}
+              animate={{ x: [-5, 5, -5] }}
+              transition={{ duration: 1.6 + slider * 0.3, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          ))}
+        </div>
+        {[0, 1, 2, 3, 4, 5, 6].map((bar) => (
+          <motion.span
+            key={bar}
+            className="absolute bottom-5 w-3 rounded-full bg-pink-300/75"
+            style={{ left: 88 + bar * 18 }}
+            animate={{ height: [12, 42 - (bar % 3) * 7, 16] }}
+            transition={{ duration: 0.75, delay: bar * 0.08, repeat: Infinity }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'snow') {
+    return (
+      <div className="relative h-64 w-80 overflow-hidden rounded-[34px] border border-sky-100/15 bg-gradient-to-b from-slate-900/40 via-sky-950/45 to-black/75">
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(150deg,transparent_0_28%,rgba(240,249,255,0.78)_29%_53%,transparent_54%)]" />
+        <div className="absolute left-14 top-20 h-28 w-44 rotate-[-18deg] rounded-[50%] border-t border-white/35" />
+        <motion.div
+          className="absolute left-24 top-28 h-5 w-16 rounded-full bg-black/70 shadow-[0_0_28px_rgba(224,242,254,0.45)]"
+          animate={{ x: [-46, 64, -46], y: [-24, 42, -24], rotate: [-18, 16, -18] }}
+          transition={{ duration: 4.4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <span className="absolute left-5 -top-7 h-8 w-4 rounded-full bg-yellow-200/80" />
+          <span className="absolute -left-4 top-3 h-2 w-24 rounded-full bg-sky-100/80" />
+        </motion.div>
+        {[0, 1, 2, 3, 4, 5].map((flake) => (
+          <motion.span
+            key={flake}
+            className="absolute h-1.5 w-1.5 rounded-full bg-white/70"
+            style={{ left: `${12 + flake * 14}%`, top: `${10 + (flake % 3) * 10}%` }}
+            animate={{ y: [0, 90], opacity: [0.2, 0.9, 0] }}
+            transition={{ duration: 3.2, delay: flake * 0.35, repeat: Infinity, ease: 'linear' }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  if (type === 'photo') {
+    return (
+      <div className="relative h-64 w-80">
+        <motion.div
+          className="absolute left-16 top-20 h-36 w-48 rounded-[30px] border border-violet-100/15 bg-black/65 shadow-[0_30px_100px_rgba(167,139,250,0.18)]"
+          animate={{ y: [0, -8, 0], rotateY: [-5, 4, -5] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <span className="absolute left-6 -top-5 h-8 w-24 rounded-t-2xl border border-violet-100/15 bg-black/70" />
+          <motion.span
+            className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-100/25 bg-[radial-gradient(circle,rgba(167,139,250,0.8)_0_10%,rgba(255,255,255,0.12)_11%_22%,rgba(0,0,0,0.8)_23%_100%)]"
+            animate={{ scale: [0.96, 1.05, 0.96] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <span className="absolute right-6 top-5 h-3 w-8 rounded-full bg-violet-200/70" />
+        </motion.div>
+        {[0, 1, 2].map((frame) => (
+          <motion.span
+            key={frame}
+            className="absolute h-16 w-20 rounded-lg border border-white/10 bg-white/[0.06]"
+            style={{ right: 6 + frame * 22, bottom: 8 + frame * 18, rotate: `${-8 + frame * 8}deg` }}
+            animate={{ y: [0, -10, 0], opacity: [0.35, 0.85, 0.35] }}
+            transition={{ duration: 3, delay: frame * 0.28, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        ))}
+      </div>
+    )
+  }
+
   if (type === 'code') {
     return (
       <div className="relative h-48 w-64 rounded-[30px] border border-white/10 bg-black/45 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
@@ -460,10 +680,10 @@ export default function ChronicleSection() {
           <div className="mx-auto max-w-6xl flex items-end justify-between">
             <div>
               <p className="text-[10px] font-semibold tracking-[0.34em] uppercase text-[#ffd60a] mb-1">
-                The story
+                Hobbies first
               </p>
               <h2 className="text-2xl font-black tracking-normal text-[#f0ede4]">
-                Deeper with every scroll.
+                Then the journey.
               </h2>
             </div>
 

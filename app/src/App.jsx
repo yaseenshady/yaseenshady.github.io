@@ -6,7 +6,6 @@ import HeroSection      from './sections/HeroSection'
 import ChronicleSection from './sections/ChronicleSection'
 import StatsStrip       from './sections/StatsStrip'
 import BuildsSection    from './sections/BuildsSection'
-import LifeSection      from './sections/LifeSection'
 import CtaSection       from './sections/CtaSection'
 
 export default function App() {
@@ -21,7 +20,6 @@ export default function App() {
         <ChronicleSection reduceMotion={reduceMotion} />
         <StatsStrip />
         <BuildsSection    reduceMotion={reduceMotion} />
-        <LifeSection      reduceMotion={reduceMotion} />
         <CtaSection       reduceMotion={reduceMotion} />
       </div>
     </div>

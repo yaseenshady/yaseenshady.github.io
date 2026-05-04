@@ -4,7 +4,6 @@ import { useState } from 'react'
 const links = [
   { label: 'Story',   href: '#story'  },
   { label: 'Builds',  href: '#builds' },
-  { label: 'Life',    href: '#life'   },
   { label: 'Contact', href: '#cta'    },
 ]
 
@@ -55,13 +54,33 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <a
-            href="mailto:yaseenshady7@gmail.com"
-            className="hidden md:inline-flex btn-glass text-[11px] tracking-widest uppercase text-[#ffd60a] px-5 py-2"
-            style={{ borderColor: 'rgba(255,214,10,0.25)' }}
-          >
-            Say hello
-          </a>
+          <div className="hidden md:flex items-center gap-2">
+            <a
+              href="https://github.com/yaseenshady"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-glass px-4 py-2 text-[11px] uppercase tracking-widest text-[#ffd60a]"
+              style={{ borderColor: 'rgba(255,214,10,0.25)' }}
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yaseenshady/"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-glass px-4 py-2 text-[11px] uppercase tracking-widest text-[#ffd60a]"
+              style={{ borderColor: 'rgba(255,214,10,0.25)' }}
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:yaseenshady7@gmail.com"
+              className="btn-glass px-4 py-2 text-[11px] uppercase tracking-widest text-[#ffd60a]"
+              style={{ borderColor: 'rgba(255,214,10,0.25)' }}
+            >
+              Say hello
+            </a>
+          </div>
         </div>
       </motion.header>
     </>
