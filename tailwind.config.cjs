@@ -1,28 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/index.html", "./app/src/**/*.{js,jsx}"],
+  content: ['./app/index.html', './app/src/**/*.{js,jsx}'],
   theme: {
     extend: {
       colors: {
-        ink: "#040404",
-        mist: "#0b0b0b",
-        panel: "rgba(12, 12, 10, 0.76)",
-        line: "rgba(148, 163, 184, 0.14)",
-        accent: "#facc15",
-        glow: "#f59e0b",
+        accent: '#ffd60a',
+        surface: '#050505',
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        glass:
-          "0 24px 80px rgba(4, 8, 20, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12)",
-        soft: "0 18px 60px rgba(8, 15, 36, 0.38)",
-      },
-      backgroundImage: {
-        grid: "linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px)",
-      },
-      transitionTimingFunction: {
-        cinematic: "cubic-bezier(0.22, 1, 0.36, 1)",
+        glass: '0 0 0 1px rgba(255,255,255,0.08), 0 24px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.12)',
+        glow:  '0 0 60px rgba(255,214,10,0.25), 0 0 120px rgba(255,214,10,0.12)',
       },
     },
   },
   plugins: [],
-};
+}

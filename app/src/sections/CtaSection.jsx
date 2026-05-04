@@ -1,39 +1,76 @@
-import { motion } from "framer-motion";
-import GlowButton from "../components/ui/GlowButton";
-import GlassCard from "../components/ui/GlassCard";
+import { motion } from 'framer-motion'
 
-export default function CtaSection() {
+const EASE = [0.22, 1, 0.36, 1]
+
+export default function CtaSection({ reduceMotion }) {
   return (
-    <section id="cta" className="relative px-6 pb-28 pt-20 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-7xl">
-        <GlassCard className="relative overflow-hidden px-7 py-12 sm:px-10 sm:py-14 lg:px-14">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(250,204,21,0.2),transparent_26%),radial-gradient(circle_at_82%_24%,rgba(245,158,11,0.2),transparent_24%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.12),transparent_40%)]" />
-          <motion.div
-            aria-hidden="true"
-            animate={{ scale: [1, 1.12, 1], opacity: [0.28, 0.42, 0.28] }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-300/20 blur-[110px]"
-          />
-          <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <p className="text-xs uppercase tracking-[0.26em] text-yellow-200/70">Final frame</p>
-              <h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl">
-                First the life journey. Then the things I do for the love of it.
-              </h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300">
-                The page is lighter on copy now, heavier on motion, and built to move like one continuous story.
-              </p>
-            </div>
+    <section id="cta" className="relative py-40 px-6 sm:px-12">
+      {/* Dramatic glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_60%,rgba(255,214,10,0.1),transparent),radial-gradient(ellipse_40%_30%_at_50%_80%,rgba(255,183,3,0.08),transparent)]" />
 
-            <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
-              <GlowButton href="#top">Back to top</GlowButton>
-              <GlowButton href="#hobbies" variant="secondary">
-                See hobbies
-              </GlowButton>
-            </div>
-          </div>
-        </GlassCard>
+      <div className="mx-auto max-w-3xl text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="mb-5 text-[11px] font-semibold tracking-[0.32em] uppercase text-[#ffd60a]"
+        >
+          Let's connect
+        </motion.p>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+          className="mb-6 text-[clamp(2.6rem,6vw,5rem)] font-black leading-[1.0] tracking-[-0.04em] text-[#f0ede4]"
+        >
+          Building something interesting?<br />
+          <span className="text-gradient">Let's talk.</span>
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
+          className="mb-12 text-[1.08rem] leading-relaxed text-[rgba(240,237,228,0.58)]"
+        >
+          I'm always up for a great conversation about AI, systems design, developer tooling, or the ocean.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.65, delay: 0.3, ease: EASE }}
+          className="flex flex-wrap justify-center gap-4"
+        >
+          <a href="mailto:yaseenshady7@gmail.com"
+            className="rounded-full bg-[#ffd60a] px-8 py-3.5 text-sm font-bold text-[#050505] tracking-wide hover:bg-[#ffe44d] transition-all duration-300 hover:shadow-glow">
+            Email me
+          </a>
+          <a href="https://github.com/yaseenshady" target="_blank" rel="noreferrer"
+            className="glass rounded-full px-8 py-3.5 text-sm font-medium text-[#f0ede4] hover:border-[rgba(255,214,10,0.3)] transition-all duration-300">
+            GitHub ↗
+          </a>
+          <a href="https://yaseensh.github.io/Lexoire/" target="_blank" rel="noreferrer"
+            className="rounded-full px-8 py-3.5 text-sm font-medium text-[rgba(240,237,228,0.45)] hover:text-[#ffd60a] transition-colors duration-300">
+            Lexoire site →
+          </a>
+        </motion.div>
       </div>
+
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="mt-24 text-center text-[11px] tracking-[0.18em] text-[rgba(240,237,228,0.2)] uppercase"
+      >
+        Yaseen Shady · {new Date().getFullYear()} · Engineer · Founder · Explorer
+      </motion.footer>
     </section>
-  );
+  )
 }
