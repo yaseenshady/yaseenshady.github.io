@@ -1093,6 +1093,127 @@ select {
   justify-content: center;
 }
 
+/* ══════════════════════════════════════════════════════════
+   OCEAN DIVE SCENE
+   ══════════════════════════════════════════════════════════ */
+
+.dive-wrapper {
+  position: relative;
+  height: 480vh;           /* tall = lots of scroll room */
+  width: 100%;
+  margin: 0 calc(-1 * ((100vw - var(--content-width)) / 2));
+  width: 100vw;
+}
+
+.dive-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#ocean-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Scuba diver overlay */
+.diver-outer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0;
+  filter: drop-shadow(0 0 18px rgba(0, 180, 255, 0.45));
+  transition: filter 0.2s ease;
+}
+
+/* Water splash ring */
+.dive-splash {
+  position: absolute;
+  top: 48%;
+  left: 42%;
+  width: 120px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(136, 220, 255, 0.7);
+  box-shadow:
+    0 0 24px rgba(136, 220, 255, 0.5),
+    inset 0 0 14px rgba(136, 220, 255, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.5);
+  z-index: 6;
+}
+
+/* Captions */
+.dive-captions {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.dive-cap {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #e0f4ff;
+  text-shadow: 0 0 40px rgba(0, 160, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.1s linear;
+  position: absolute;
+  width: max-content;
+  max-width: 90vw;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+/* Scroll hint */
+.dive-scroll-hint {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 8;
+  pointer-events: none;
+  color: rgba(200, 230, 255, 0.6);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.dive-arrow {
+  width: 2px;
+  height: 36px;
+  background: linear-gradient(180deg, rgba(200, 230, 255, 0.6), transparent);
+  border-radius: 2px;
+  animation: dive-arrow-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes dive-arrow-pulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
+  50%       { opacity: 1;   transform: scaleY(1);   }
+}
+
 /* ── Hero journey layout ── */
 .hero-journey-layout {
   display: grid;

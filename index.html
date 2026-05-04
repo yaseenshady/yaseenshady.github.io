@@ -100,6 +100,97 @@
         </div>
       </section>
 
+      <!-- ═══ OCEAN DIVE SCENE ═══ -->
+      <div class="dive-wrapper" id="dive-wrapper">
+        <div class="dive-sticky" id="dive">
+          <canvas id="ocean-canvas"></canvas>
+
+          <!-- Scuba diver SVG -->
+          <div class="diver-outer" id="diver-svg-wrap" aria-hidden="true">
+            <svg width="130" height="310" viewBox="0 0 130 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Fins -->
+              <ellipse cx="38" cy="292" rx="34" ry="10" fill="#0a2448" transform="rotate(-12 38 292)"/>
+              <ellipse cx="92" cy="296" rx="34" ry="10" fill="#0a2448" transform="rotate(12 92 296)"/>
+              <!-- Lower legs -->
+              <rect x="32" y="228" width="22" height="62" rx="11" fill="#112244"/>
+              <rect x="76" y="228" width="22" height="62" rx="11" fill="#112244"/>
+              <!-- Upper legs -->
+              <rect x="30" y="168" width="24" height="64" rx="12" fill="#112244"/>
+              <rect x="76" y="168" width="24" height="64" rx="12" fill="#112244"/>
+              <!-- Hips -->
+              <rect x="26" y="155" width="78" height="22" rx="11" fill="#0f1e3c"/>
+              <!-- Torso / BCD -->
+              <rect x="22" y="98" width="86" height="64" rx="20" fill="#0d1b38"/>
+              <!-- BCD accent seam -->
+              <path d="M28 108 Q65 98 102 108" stroke="#1a3468" stroke-width="2.5" fill="none" opacity="0.8"/>
+              <path d="M24 140 Q65 133 106 140" stroke="#1a3468" stroke-width="2" fill="none" opacity="0.5"/>
+              <!-- Scuba tank -->
+              <rect x="6" y="96" width="24" height="72" rx="12" fill="#1a4a72"/>
+              <ellipse cx="18" cy="94" rx="12" ry="5" fill="#2266aa"/>
+              <rect x="14" y="164" width="8" height="16" rx="4" fill="#1155aa"/>
+              <!-- Regulator hose -->
+              <path d="M22 170 Q36 180 36 196" stroke="#1a5585" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <!-- Tank straps -->
+              <rect x="30" y="104" width="6" height="62" rx="3" fill="#080f22" opacity="0.55"/>
+              <rect x="36" y="128" width="30" height="5" rx="2" fill="#080f22" opacity="0.45"/>
+              <!-- Left arm -->
+              <rect x="8"  y="112" width="20" height="56" rx="10" fill="#0d1b38" transform="rotate(22 18 140)"/>
+              <!-- Right arm -->
+              <rect x="102" y="112" width="20" height="56" rx="10" fill="#0d1b38" transform="rotate(-22 112 140)"/>
+              <!-- Gloves -->
+              <ellipse cx="12"  cy="165" rx="12" ry="9" fill="#060e1e" transform="rotate(22 12 165)"/>
+              <ellipse cx="118" cy="165" rx="12" ry="9" fill="#060e1e" transform="rotate(-22 118 165)"/>
+              <!-- Depth gauge -->
+              <rect x="96" y="130" width="18" height="14" rx="4" fill="#060e1e" opacity="0.8"/>
+              <circle cx="105" cy="137" r="5" fill="none" stroke="#44aaff" stroke-width="1.5" opacity="0.8"/>
+              <!-- Neck -->
+              <rect x="48" y="84" width="34" height="20" rx="10" fill="#0d1b38"/>
+              <!-- Hood -->
+              <path d="M34 62 Q34 28 65 25 Q96 28 96 62" fill="#0d1b38"/>
+              <!-- Head / helmet -->
+              <circle cx="65" cy="60" r="34" fill="#112244"/>
+              <!-- Mask frame -->
+              <rect x="41" y="47" width="48" height="28" rx="11" fill="#020c1a" opacity="0.95"/>
+              <!-- Mask lenses -->
+              <rect x="43" y="49" width="19" height="24" rx="8" fill="#00aaff" opacity="0.22"/>
+              <rect x="68" y="49" width="19" height="24" rx="8" fill="#00aaff" opacity="0.22"/>
+              <!-- Lens highlight -->
+              <rect x="43" y="49" width="19" height="24" rx="8" fill="none" stroke="#4499cc" stroke-width="1.8"/>
+              <rect x="68" y="49" width="19" height="24" rx="8" fill="none" stroke="#4499cc" stroke-width="1.8"/>
+              <rect x="62" y="56" width="6" height="8" rx="3" fill="#1a4488"/>
+              <!-- Regulator mouthpiece -->
+              <circle cx="52" cy="80" r="8" fill="#133a60"/>
+              <path d="M60 77 Q70 74 76 84" stroke="#1a5580" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- Bubbles from regulator -->
+              <circle cx="82"  cy="80"  r="5.5" fill="#88eeff" opacity="0.65"/>
+              <circle cx="90"  cy="68"  r="4"   fill="#88eeff" opacity="0.50"/>
+              <circle cx="86"  cy="56"  r="3"   fill="#88eeff" opacity="0.38"/>
+              <circle cx="94"  cy="46"  r="2.2" fill="#88eeff" opacity="0.28"/>
+              <circle cx="90"  cy="36"  r="1.6" fill="#88eeff" opacity="0.20"/>
+              <!-- Wetsuit highlight -->
+              <path d="M22 100 Q65 90 108 100" stroke="rgba(255,255,255,0.06)" stroke-width="3" fill="none"/>
+            </svg>
+          </div>
+
+          <!-- Water splash ring -->
+          <div class="dive-splash" id="dive-splash" aria-hidden="true"></div>
+
+          <!-- Cinematic captions -->
+          <div class="dive-captions" aria-live="polite">
+            <p class="dive-cap" id="dive-cap-1">Always exploring.</p>
+            <p class="dive-cap" id="dive-cap-2">Whether it's deep underwater...</p>
+            <p class="dive-cap" id="dive-cap-3">...or deep in code.</p>
+          </div>
+
+          <!-- Scroll hint -->
+          <div class="dive-scroll-hint" aria-hidden="true">
+            <span>scroll to dive</span>
+            <div class="dive-arrow"></div>
+          </div>
+        </div>
+      </div>
+      <!-- ═══ END OCEAN DIVE ═══ -->
+
       <!-- ORIGIN -->
       <section class="section" id="origin">
         <div class="section-heading js-reveal">
@@ -394,8 +485,10 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="./assets/js/site.js"></script>
+  <script src="./assets/js/ocean.js"></script>
 </body>
 </html>
