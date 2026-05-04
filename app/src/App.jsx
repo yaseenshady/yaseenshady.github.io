@@ -1,20 +1,11 @@
 import { useMemo, useState } from "react";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import {
-  featureCards,
-  hero,
-  journeyCards,
-  metrics,
-  problemCards,
-  workPanels,
-} from "./content";
+import { hero, hobbiesCards, journeyCards, metrics } from "./content";
 import CtaSection from "./sections/CtaSection";
-import FeaturesSection from "./sections/FeaturesSection";
 import HeroSection from "./sections/HeroSection";
+import HobbiesSection from "./sections/HobbiesSection";
 import JourneySection from "./sections/JourneySection";
 import MetricsSection from "./sections/MetricsSection";
-import ProblemSection from "./sections/ProblemSection";
-import ProductSection from "./sections/ProductSection";
 import SceneStage from "./components/SceneStage";
 
 export default function App() {
@@ -32,7 +23,7 @@ export default function App() {
   const navigation = useMemo(
     () => [
       { label: "Story", href: "#journey" },
-      { label: "Work", href: "#selected-work" },
+      { label: "Hobbies", href: "#hobbies" },
       { label: "CTA", href: "#cta" },
     ],
     [],
@@ -73,10 +64,8 @@ export default function App() {
 
       <main className="relative z-10">
         <HeroSection content={hero} scrollYProgress={scrollYProgress} />
-        <ProblemSection items={problemCards} />
-        <ProductSection items={workPanels} />
-        <FeaturesSection items={featureCards} />
         <JourneySection items={journeyCards} />
+        <HobbiesSection items={hobbiesCards} />
         <MetricsSection items={metrics} />
         <CtaSection />
       </main>

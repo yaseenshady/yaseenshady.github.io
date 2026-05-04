@@ -11,21 +11,21 @@ export default function HeroSection({ content, scrollYProgress }) {
 
   const floatingCards = useMemo(
     () => [
-      {
-        title: "Building signal",
-        text: "Designing interfaces that hold depth without collapsing into noise.",
-        position: "left-0 top-6",
-      },
-      {
-        title: "Shipping taste",
-        text: "Product-minded engineering with motion, systems, and narrative built together.",
-        position: "right-0 top-28",
-      },
-      {
-        title: "Staying personal",
-        text: "The story starts with the person behind the work, not a generic SaaS shell.",
-        position: "left-16 bottom-0",
-      },
+        {
+          title: "Origin",
+          text: "Started self-taught in Egypt at 12.",
+          position: "left-0 top-6",
+        },
+        {
+          title: "Shift",
+          text: "The Bay Area sharpened product taste and direction.",
+          position: "right-0 top-28",
+        },
+        {
+          title: "Now",
+          text: "AI, systems, and story all move together.",
+          position: "left-16 bottom-0",
+        },
     ],
     [],
   );
@@ -52,7 +52,6 @@ export default function HeroSection({ content, scrollYProgress }) {
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
             {content.body}
           </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">{content.subcopy}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <GlowButton href={content.primaryAction.href}>{content.primaryAction.label}</GlowButton>
@@ -77,33 +76,52 @@ export default function HeroSection({ content, scrollYProgress }) {
           initial={{ opacity: 0, scale: 0.95, y: 36 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative min-h-[32rem]"
+          className="relative min-h-[36rem]"
         >
-          <GlassCard className="absolute inset-x-10 top-16 p-8 lg:inset-x-14">
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-yellow-200/70">Personal signal</p>
-                <h2 className="mt-3 text-2xl font-semibold tracking-[-0.05em] text-white">
-                  Scroll-led story cards, backed by a real spatial system.
-                </h2>
-              </div>
-              <div className="rounded-full border border-yellow-300/25 bg-yellow-300/[0.08] px-3 py-1 text-xs uppercase tracking-[0.24em] text-yellow-100">
-                live motion
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {content.stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-[22px] border border-white/10 bg-black/20 px-4 py-5"
-                >
-                  <div className="text-3xl font-semibold tracking-[-0.06em] text-white">
-                    {stat.value}
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{stat.label}</p>
+          <GlassCard className="absolute inset-x-6 top-12 overflow-hidden p-8 lg:inset-x-12">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(250,204,21,0.14),transparent_24%),radial-gradient(circle_at_80%_70%,rgba(245,158,11,0.12),transparent_24%)]" />
+            <div className="relative">
+              <div className="flex items-center justify-between gap-6">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.24em] text-yellow-200/70">Life path</p>
+                  <h2 className="mt-3 text-2xl font-semibold tracking-[-0.05em] text-white">
+                    The story moves in chapters, not blocks of copy.
+                  </h2>
                 </div>
-              ))}
+                <div className="rounded-full border border-yellow-300/25 bg-yellow-300/[0.08] px-3 py-1 text-xs uppercase tracking-[0.24em] text-yellow-100">
+                  scroll-led
+                </div>
+              </div>
+
+              <div className="mt-10 grid gap-4 sm:grid-cols-4">
+                {content.timeline.map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.08, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative rounded-[24px] border border-white/10 bg-black/20 p-4"
+                  >
+                    <div className="mb-5 flex items-center gap-3">
+                      <div className="h-2.5 w-2.5 rounded-full bg-yellow-300 shadow-[0_0_18px_rgba(250,204,21,0.55)]" />
+                      {index < content.timeline.length - 1 && (
+                        <div className="h-px flex-1 bg-gradient-to-r from-yellow-300/60 to-white/10" />
+                      )}
+                    </div>
+                    <div className="text-xs uppercase tracking-[0.24em] text-yellow-200/70">{item.label}</div>
+                    <div className="mt-3 text-xl font-semibold tracking-[-0.04em] text-white">{item.value}</div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {content.stats.map((stat) => (
+                  <div key={stat.label} className="rounded-[22px] border border-white/10 bg-black/20 px-4 py-5">
+                    <div className="text-3xl font-semibold tracking-[-0.06em] text-white">{stat.value}</div>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </GlassCard>
 

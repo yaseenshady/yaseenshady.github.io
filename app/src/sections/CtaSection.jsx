@@ -18,18 +18,17 @@ export default function CtaSection() {
             <div>
               <p className="text-xs uppercase tracking-[0.26em] text-yellow-200/70">Final frame</p>
               <h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl">
-                Built to feel like a premium product, but grounded in the personal story first.
+                First the life journey. Then the things I do for the love of it.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300">
-                The 3D scene lives in a single fixed canvas, scroll motion lives in the section layer, and
-                the glass UI components are shared across the page so the whole experience stays cohesive.
+                The page is lighter on copy now, heavier on motion, and built to move like one continuous story.
               </p>
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
               <GlowButton href="#top">Back to top</GlowButton>
-              <GlowButton href="#selected-work" variant="secondary">
-                Revisit the panels
+              <GlowButton href="#hobbies" variant="secondary">
+                See hobbies
               </GlowButton>
             </div>
           </div>
