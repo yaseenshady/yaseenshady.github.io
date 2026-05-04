@@ -53,21 +53,48 @@
     <main id="home">
 
       <!-- HERO -->
-      <section class="section hero-section">
+      <section class="section hero-section hero-section--cinematic">
+        <div class="hero-cinematic-bg" aria-hidden="true">
+          <div class="hero-sun"></div>
+          <div class="hero-grid-lines"></div>
+          <svg class="hero-world" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="heroOcean" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#00a6fb" stop-opacity="0.72"/>
+                <stop offset="1" stop-color="#00111f" stop-opacity="0.94"/>
+              </linearGradient>
+              <linearGradient id="heroGold" x1="0" x2="1">
+                <stop offset="0" stop-color="#fff2a8"/>
+                <stop offset="1" stop-color="#ffd60a"/>
+              </linearGradient>
+            </defs>
+            <path class="hero-world__shore" d="M0 664 C190 598 344 636 500 586 C690 526 790 402 970 420 C1170 440 1296 560 1440 504 V900 H0 Z"/>
+            <path class="hero-world__ocean" d="M0 706 C192 646 344 674 520 622 C706 566 800 478 968 488 C1160 500 1262 596 1440 548 V900 H0 Z" fill="url(#heroOcean)"/>
+            <path class="hero-world__ridge hero-world__ridge--one" d="M768 452 L930 236 L1098 452 Z"/>
+            <path class="hero-world__ridge hero-world__ridge--two" d="M1008 458 L1168 292 L1320 458 Z"/>
+            <path class="hero-world__code" d="M920 172 H1264 V352 H920 Z"/>
+            <path class="hero-world__code-line" d="M954 220 H1124 M954 256 H1228 M954 292 H1168"/>
+            <path class="hero-world__guitar" d="M770 612 C824 552 912 576 914 654 C916 724 824 746 780 694 C734 734 650 704 650 638 C650 594 718 576 770 612 Z"/>
+            <path class="hero-world__guitar-neck" d="M884 622 L1196 500"/>
+            <circle class="hero-world__lens" cx="1136" cy="642" r="72"/>
+            <circle class="hero-world__lens-core" cx="1136" cy="642" r="38"/>
+            <path class="hero-world__route" d="M250 642 C456 514 652 516 864 406 C990 340 1106 304 1264 212"/>
+          </svg>
+        </div>
         <div class="hero-journey-layout">
           <div class="hero-journey-copy">
-            <p class="section-kicker js-reveal">Engineer · Founder · Explorer</p>
+            <p class="section-kicker js-reveal">Microsoft engineer · AI technologist · Explorer</p>
             <h1 class="hero-journey-title js-reveal">
               Yaseen<br /><span>Shady.</span>
             </h1>
             <p class="hero-body js-reveal">
-              Computer enthusiast and AI technologist with over a decade of programming experience.
-              Self-taught in Egypt at age 12. Now building at <strong>Microsoft</strong> and shipping
-              things that didn't exist before.
+              Self-taught in Egypt at 12. Built through the SF Bay Area. Now engineering at
+              <strong>Microsoft</strong>, creating AI systems, developer tools, and products that turn curiosity
+              into shipped work.
             </p>
             <div class="hero-actions js-reveal">
-              <a class="glass-button glass-button--primary" href="#experience">See the journey</a>
-              <a class="glass-button" href="#builds">Builds</a>
+              <a class="glass-button glass-button--primary" href="#dive-wrapper">Start the story</a>
+              <a class="glass-button" href="#experience">Work timeline</a>
               <a class="glass-button glass-button--ghost" href="mailto:yaseenshady7@gmail.com">Say hello</a>
             </div>
             <div class="signal-row js-reveal">
@@ -75,26 +102,7 @@
               <span class="signal-chip">AI &amp; ML</span>
               <span class="signal-chip">Self-taught at 12</span>
               <span class="signal-chip">Egypt → SF Bay Area</span>
-              <span class="signal-chip">Scuba diver · Guitarist</span>
-            </div>
-          </div>
-
-          <div class="hero-visual">
-            <div class="hero-core glass-panel js-reveal" data-tilt data-depth="0.9">
-              <div class="hero-core__halo"></div>
-              <div class="hero-core__rings">
-                <span class="hero-ring hero-ring--outer"></span>
-                <span class="hero-ring hero-ring--inner"></span>
-              </div>
-              <div class="hero-core__center">
-                <p class="hero-core__label">Always exploring</p>
-                <strong>Code · Ocean · Music</strong>
-                <span>Egypt → SF Bay Area → Redmond</span>
-              </div>
-              <span class="hero-node hero-node--one">Microsoft</span>
-              <span class="hero-node hero-node--two">AI / ML</span>
-              <span class="hero-node hero-node--three">Founder</span>
-              <span class="hero-node hero-node--four">Research</span>
+              <span class="signal-chip">Scuba · Guitar · Photography · Snowboarding</span>
             </div>
           </div>
         </div>
@@ -216,6 +224,8 @@
                 <rect class="amp-glow" x="650" y="146" width="250" height="250" rx="38" fill="url(#ampGlow)"/>
                 <rect class="amp-body" x="642" y="156" width="270" height="260" rx="28"/>
                 <rect x="668" y="186" width="218" height="166" rx="16" fill="#111"/>
+                <circle class="amp-speaker amp-speaker--one" cx="724" cy="270" r="46"/>
+                <circle class="amp-speaker amp-speaker--two" cx="826" cy="270" r="46"/>
                 <g class="amp-grille">
                   <path d="M684 204H870M684 224H870M684 244H870M684 264H870M684 284H870M684 304H870M684 324H870"/>
                   <path d="M704 194V342M732 194V342M760 194V342M788 194V342M816 194V342M844 194V342"/>
@@ -231,6 +241,7 @@
                 <g class="electric-guitar">
                   <path class="guitar-neck" d="M326 260 L708 172"/>
                   <path class="guitar-head" d="M704 144 L788 120 L802 164 L724 196 Z"/>
+                  <path class="guitar-frets" d="M408 241 L428 287 M474 226 L494 272 M540 210 L560 256 M606 196 L626 242 M672 180 L692 226"/>
                   <path class="guitar-body" d="M244 234 C284 190 348 202 366 256 C418 258 450 306 430 356 C412 408 346 418 308 382 C258 428 178 400 172 336 C166 282 204 268 244 234 Z"/>
                   <circle class="guitar-hole" cx="296" cy="314" r="45"/>
                   <rect class="guitar-pickup" x="346" y="286" width="52" height="22" rx="8"/>
@@ -242,6 +253,8 @@
                   <path class="guitar-string guitar-string--five" d="M310 342 L784 192"/>
                   <circle class="strum-pulse" cx="330" cy="318" r="62"/>
                 </g>
+                <path class="sound-wave sound-wave--one" d="M892 226 C948 266 948 318 892 358"/>
+                <path class="sound-wave sound-wave--two" d="M922 186 C1018 252 1018 332 922 400"/>
               </svg>
             </div>
           </div>
@@ -265,10 +278,12 @@
                 </defs>
                 <rect class="photo-card photo-card--one" x="625" y="92" width="224" height="154" rx="14"/>
                 <rect class="photo-card photo-card--two" x="658" y="292" width="224" height="154" rx="14"/>
+                <rect class="photo-card photo-card--three" x="572" y="232" width="196" height="136" rx="14"/>
                 <path class="photo-mountain" d="M646 213 L704 152 L746 202 L778 170 L826 213 Z"/>
                 <circle class="photo-sun" cx="804" cy="130" r="18"/>
                 <path class="photo-slope" d="M680 404 C728 358 788 354 850 402"/>
                 <path class="photo-track" d="M704 414 C752 384 790 384 842 412"/>
+                <path class="photo-grid-lines" d="M674 104V232 M746 104V232 M637 143H837 M637 194H837"/>
 
                 <g class="camera-body">
                   <path d="M164 202 H308 L342 162 H488 L522 202 H574 C606 202 632 228 632 260 V382 C632 414 606 440 574 440 H164 C132 440 106 414 106 382 V260 C106 228 132 202 164 202 Z"/>
@@ -277,6 +292,8 @@
                   <circle class="lens-outer" cx="370" cy="322" r="124"/>
                   <circle class="lens-mid" cx="370" cy="322" r="92"/>
                   <circle class="lens-core" cx="370" cy="322" r="58" fill="url(#lensGlass)"/>
+                  <circle class="lens-reflection" cx="340" cy="288" r="18"/>
+                  <path class="focus-box" d="M252 244 H318 M252 244 V310 M488 244 H422 M488 244 V310 M252 400 H318 M252 400 V334 M488 400 H422 M488 400 V334"/>
                   <path class="aperture aperture--one" d="M370 264 L420 292 L384 324 Z"/>
                   <path class="aperture aperture--two" d="M428 322 L400 372 L368 336 Z"/>
                   <path class="aperture aperture--three" d="M370 380 L320 352 L356 320 Z"/>
@@ -301,6 +318,12 @@
                 <path class="peak peak--mid" d="M180 430 L480 70 L780 430 Z"/>
                 <path class="peak peak--front" d="M520 432 L760 155 L980 432 Z"/>
                 <path class="snow-path" d="M114 482 C310 390 470 374 642 292 C752 240 832 228 940 188"/>
+                <path class="powder-shadow" d="M104 508 C304 416 480 406 664 316 C780 260 850 250 958 210"/>
+                <g class="snow-dots">
+                  <circle cx="140" cy="120" r="4"/><circle cx="248" cy="210" r="3"/><circle cx="382" cy="146" r="5"/>
+                  <circle cx="552" cy="110" r="3"/><circle cx="690" cy="188" r="4"/><circle cx="842" cy="120" r="3"/>
+                  <circle cx="914" cy="246" r="5"/><circle cx="748" cy="354" r="3"/><circle cx="428" cy="344" r="4"/>
+                </g>
                 <g class="snowboarder">
                   <path class="rider-body" d="M0 -44 C18 -56 42 -42 38 -18 C36 0 22 12 4 8 C-16 4 -20 -28 0 -44 Z"/>
                   <circle class="rider-head" cx="14" cy="-76" r="18"/>
