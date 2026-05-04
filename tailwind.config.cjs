@@ -4,12 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: "#050816",
-        mist: "#0a1022",
-        panel: "rgba(10, 16, 34, 0.7)",
+        ink: "#040404",
+        mist: "#0b0b0b",
+        panel: "rgba(12, 12, 10, 0.76)",
         line: "rgba(148, 163, 184, 0.14)",
-        accent: "#79e4ff",
-        glow: "#9b8cff",
+        accent: "#facc15",
+        glow: "#f59e0b",
       },
       boxShadow: {
         glass:

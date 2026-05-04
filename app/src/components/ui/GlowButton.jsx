@@ -9,8 +9,8 @@ export default function GlowButton({
 }) {
   const variantClasses =
     variant === "secondary"
-      ? "border-white/12 bg-white/[0.03] text-white hover:border-white/25 hover:bg-white/[0.08]"
-      : "border-cyan-300/30 bg-cyan-300/[0.12] text-cyan-50 shadow-[0_0_36px_rgba(121,228,255,0.18)] hover:border-cyan-200/50 hover:bg-cyan-200/[0.18] hover:shadow-[0_0_44px_rgba(121,228,255,0.26)]";
+      ? "border-yellow-400/20 bg-yellow-400/[0.04] text-yellow-100 hover:border-yellow-300/35 hover:bg-yellow-300/[0.08]"
+      : "border-yellow-300/35 bg-yellow-300/[0.14] text-yellow-50 shadow-[0_0_36px_rgba(250,204,21,0.18)] hover:border-yellow-200/55 hover:bg-yellow-200/[0.2] hover:text-neutral-950 hover:shadow-[0_0_44px_rgba(250,204,21,0.28)]";
 
   return (
     <a href={href} className={`${baseClasses} ${variantClasses} ${className}`.trim()}>

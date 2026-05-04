@@ -5,9 +5,9 @@ const SceneCanvas = lazy(() => import("./SceneCanvas"));
 function SceneFallback() {
   return (
     <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(121,228,255,0.18),transparent_30%),radial-gradient(circle_at_20%_20%,rgba(155,140,255,0.18),transparent_22%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_20%)]" />
-      <div className="absolute inset-x-0 top-[12%] h-72 bg-cyan-300/10 blur-[120px]" />
-      <div className="absolute bottom-[10%] left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-violet-400/10 blur-[140px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.18),transparent_30%),radial-gradient(circle_at_20%_20%,rgba(245,158,11,0.18),transparent_22%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.06),transparent_20%)]" />
+      <div className="absolute inset-x-0 top-[12%] h-72 bg-yellow-300/10 blur-[120px]" />
+      <div className="absolute bottom-[10%] left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-amber-400/10 blur-[140px]" />
     </div>
   );
 }

@@ -82,12 +82,12 @@ export default function HeroSection({ content, scrollYProgress }) {
           <GlassCard className="absolute inset-x-10 top-16 p-8 lg:inset-x-14">
             <div className="flex items-start justify-between gap-6">
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-cyan-100/70">Personal signal</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-yellow-200/70">Personal signal</p>
                 <h2 className="mt-3 text-2xl font-semibold tracking-[-0.05em] text-white">
                   Scroll-led story cards, backed by a real spatial system.
                 </h2>
               </div>
-              <div className="rounded-full border border-cyan-300/20 bg-cyan-300/[0.08] px-3 py-1 text-xs uppercase tracking-[0.24em] text-cyan-100">
+              <div className="rounded-full border border-yellow-300/25 bg-yellow-300/[0.08] px-3 py-1 text-xs uppercase tracking-[0.24em] text-yellow-100">
                 live motion
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function HeroSection({ content, scrollYProgress }) {
               }}
             >
               <GlassCard className="p-5">
-                <p className="text-xs uppercase tracking-[0.22em] text-cyan-100/70">{card.title}</p>
+                <p className="text-xs uppercase tracking-[0.22em] text-yellow-200/70">{card.title}</p>
                 <p className="mt-3 text-sm leading-6 text-slate-200">{card.text}</p>
               </GlassCard>
             </motion.div>

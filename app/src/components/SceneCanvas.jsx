@@ -113,7 +113,7 @@ function NeuralCore({ progress }) {
       <mesh ref={coreRef}>
         <icosahedronGeometry args={[1.28, 8]} />
         <meshPhysicalMaterial
-          color="#90f2ff"
+          color="#f4d35e"
           roughness={0.12}
           metalness={0.2}
           transmission={0.92}
@@ -122,18 +122,18 @@ function NeuralCore({ progress }) {
           opacity={0.94}
           clearcoat={1}
           clearcoatRoughness={0.06}
-          emissive="#2cc5ff"
-          emissiveIntensity={0.2}
+          emissive="#d79a00"
+          emissiveIntensity={0.24}
         />
       </mesh>
 
       <mesh ref={haloRef} scale={1.9}>
         <torusGeometry args={[1.1, 0.03, 16, 120]} />
-        <meshBasicMaterial color="#8a7dff" transparent opacity={0.42} />
+        <meshBasicMaterial color="#f5c542" transparent opacity={0.42} />
       </mesh>
 
       <lineSegments ref={lineRef} geometry={lineGeometry}>
-        <lineBasicMaterial color="#7ce8ff" transparent opacity={0.26} />
+        <lineBasicMaterial color="#f4c84a" transparent opacity={0.28} />
       </lineSegments>
 
       <points geometry={particleGeometry}>
@@ -149,9 +149,9 @@ function NeuralCore({ progress }) {
         >
           <sphereGeometry args={[1, 24, 24]} />
           <meshStandardMaterial
-            color={index % 2 === 0 ? "#ffffff" : "#9b8cff"}
-            emissive={index % 2 === 0 ? "#6fe7ff" : "#8874ff"}
-            emissiveIntensity={0.34}
+            color={index % 2 === 0 ? "#fff7d6" : "#f5c542"}
+            emissive={index % 2 === 0 ? "#f2b600" : "#b47a00"}
+            emissiveIntensity={0.3}
             roughness={0.24}
             metalness={0.18}
           />
@@ -161,7 +161,7 @@ function NeuralCore({ progress }) {
       <mesh position={[2.7, -1.2, -1.4]} rotation={[0.6, -0.46, -0.28]}>
         <planeGeometry args={[1.7, 1.05, 1, 1]} />
         <meshPhysicalMaterial
-          color="#dff6ff"
+          color="#ffe8a3"
           transparent
           opacity={0.16}
           roughness={0.1}
@@ -196,11 +196,11 @@ export default function SceneCanvas({ progress = 0 }) {
         camera={{ position: [0, 0.2, 7.5], fov: 34 }}
       >
         <color attach="background" args={["#050816"]} />
-        <fog attach="fog" args={["#050816", 8, 18]} />
+        <fog attach="fog" args={["#040404", 8, 18]} />
         <ambientLight intensity={0.55} />
-        <directionalLight position={[4, 6, 3]} intensity={1.3} color="#c5f5ff" />
-        <pointLight position={[-4, -3, 5]} intensity={0.7} color="#8f7cff" />
-        <spotLight position={[0, 4, 6]} angle={0.45} intensity={1.5} penumbra={1} color="#7ce8ff" />
+        <directionalLight position={[4, 6, 3]} intensity={1.3} color="#ffe8a3" />
+        <pointLight position={[-4, -3, 5]} intensity={0.7} color="#c88a00" />
+        <spotLight position={[0, 4, 6]} angle={0.45} intensity={1.5} penumbra={1} color="#f4c84a" />
         <NeuralCore progress={progress} />
       </Canvas>
     </div>

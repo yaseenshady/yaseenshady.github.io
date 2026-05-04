@@ -6,7 +6,7 @@ export default function ProblemSection({ items }) {
     <section className="relative px-6 py-24 sm:px-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <p className="text-xs uppercase tracking-[0.26em] text-cyan-100/70">Personal lens</p>
+          <p className="text-xs uppercase tracking-[0.26em] text-yellow-200/70">Personal lens</p>
           <h2 className="mt-4 max-w-xl text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl">
             I wanted the background to feel premium, so the cards had to earn the scroll.
           </h2>
@@ -26,7 +26,7 @@ export default function ProblemSection({ items }) {
               transition={{ duration: 0.9, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
               <GlassCard className="p-7 sm:p-8">
-                <p className="text-xs uppercase tracking-[0.24em] text-cyan-100/70">{item.eyebrow}</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-yellow-200/70">{item.eyebrow}</p>
                 <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em] text-white">
                   {item.title}
                 </h3>

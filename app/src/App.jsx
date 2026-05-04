@@ -43,7 +43,7 @@ export default function App() {
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <motion.div
           style={{ y: ambientShift }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(121,228,255,0.12),transparent_34%),radial-gradient(circle_at_20%_20%,rgba(155,140,255,0.14),transparent_24%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_20%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.16),transparent_34%),radial-gradient(circle_at_20%_20%,rgba(245,158,11,0.14),transparent_24%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.06),transparent_20%)]"
         />
         <motion.div
           style={{ opacity: gridOpacity }}
@@ -62,7 +62,7 @@ export default function App() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-xs uppercase tracking-[0.24em] text-slate-300 transition-colors duration-300 hover:text-white"
+                className="text-xs uppercase tracking-[0.24em] text-slate-300 transition-colors duration-300 hover:text-yellow-200"
               >
                 {item.label}
               </a>

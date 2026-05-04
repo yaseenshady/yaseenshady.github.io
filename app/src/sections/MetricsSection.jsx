@@ -5,7 +5,7 @@ export default function MetricsSection({ items }) {
     <section className="relative px-6 py-24 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.26em] text-cyan-100/70">Proof</p>
+          <p className="text-xs uppercase tracking-[0.26em] text-yellow-200/70">Proof</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl">
             A few simple numbers to keep the story grounded.
           </h2>

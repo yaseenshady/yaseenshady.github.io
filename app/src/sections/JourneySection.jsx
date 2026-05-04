@@ -6,7 +6,7 @@ export default function JourneySection({ items }) {
     <section id="journey" className="relative px-6 py-24 sm:px-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="text-xs uppercase tracking-[0.26em] text-cyan-100/70">Scroll story</p>
+          <p className="text-xs uppercase tracking-[0.26em] text-yellow-200/70">Scroll story</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl">
             This is the card sequence you asked for — but with a background that actually feels good.
           </h2>
@@ -17,7 +17,7 @@ export default function JourneySection({ items }) {
         </div>
 
         <div className="relative">
-          <div className="absolute left-6 top-0 hidden h-full w-px bg-gradient-to-b from-cyan-300/40 via-white/20 to-transparent lg:block" />
+          <div className="absolute left-6 top-0 hidden h-full w-px bg-gradient-to-b from-yellow-300/40 via-white/20 to-transparent lg:block" />
           <div className="space-y-8">
             {items.map((item, index) => (
               <motion.div
@@ -32,7 +32,7 @@ export default function JourneySection({ items }) {
                 <TiltCard className="p-7 sm:p-8">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.28em] text-cyan-100/70">
+                      <p className="text-xs uppercase tracking-[0.28em] text-yellow-200/70">
                         Chapter {item.step}
                       </p>
                       <h3 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-white">
