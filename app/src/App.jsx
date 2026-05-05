@@ -3,6 +3,7 @@ import Navbar           from './components/Navbar'
 import Background       from './components/Background'
 import Cursor           from './components/Cursor'
 import HeroSection      from './sections/HeroSection'
+import AboutSection     from './sections/AboutSection'
 import ChronicleSection from './sections/ChronicleSection'
 import StatsStrip       from './sections/StatsStrip'
 import BuildsSection    from './sections/BuildsSection'
@@ -17,6 +18,7 @@ export default function App() {
       <div className="relative z-10">
         <Navbar />
         <HeroSection      reduceMotion={reduceMotion} />
+        <AboutSection     reduceMotion={reduceMotion} />
         <ChronicleSection reduceMotion={reduceMotion} />
         <StatsStrip />
         <BuildsSection    reduceMotion={reduceMotion} />

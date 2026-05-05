@@ -2,6 +2,7 @@ import { motion, useScroll, useSpring, useMotionValueEvent } from 'framer-motion
 import { useState } from 'react'
 
 const links = [
+  { label: 'Bio',     href: '#about'  },
   { label: 'Story',   href: '#story'  },
   { label: 'Builds',  href: '#builds' },
   { label: 'Contact', href: '#cta'    },
@@ -47,9 +48,10 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-xs font-medium tracking-[0.2em] uppercase text-[rgba(240,237,228,0.5)] hover:text-[#ffd60a] transition-colors duration-300"
+                className="group relative text-xs font-medium tracking-[0.2em] uppercase text-[rgba(240,237,228,0.5)] hover:text-[#ffd60a] transition-colors duration-300"
               >
                 {l.label}
+                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#ffd60a] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>

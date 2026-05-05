@@ -18,17 +18,17 @@ const REALISTIC_ASSETS = {
   code: '/story-assets/keyboard.webp',
 }
 
-/* ── Word-by-word animated sentence — re-animates on each new card ── */
+/* ── Word-by-word animated sentence ── */
 function AnimatedSentence({ text }) {
   const words = text.split(' ')
   return (
-    <p className="text-[1.02rem] leading-[1.75] text-[rgba(240,237,228,0.62)]">
+    <p className="text-[1.05rem] leading-[1.8] text-[rgba(240,237,228,0.65)]">
       {words.map((word, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0.05, y: 12, filter: 'blur(5px)' }}
+          initial={{ opacity: 0.05, y: 10, filter: 'blur(4px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.5, delay: 0.25 + i * 0.052, ease: EASE }}
+          transition={{ duration: 0.45, delay: 0.22 + i * 0.048, ease: EASE }}
           className="inline-block mr-[0.28em]"
         >
           {word}
@@ -38,97 +38,123 @@ function AnimatedSentence({ text }) {
   )
 }
 
-/* ── Chapter data ──────────────────────────────────────────────── */
+/* ── Chapter data ── */
 const chapters = [
   {
     year: 'Depth', place: 'Scuba',
     color: '#38bdf8', visual: 'scuba',
-    title: 'I start where it gets quiet.',
-    sentence: 'Scuba taught me calm under pressure: breathe first, move with intention, trust the system.',
+    title: 'Depth isn\'t distance — it\'s stillness.',
+    sentence: 'Scuba taught me to breathe first, move with intention, and trust the system. The same rule applies underwater and in production.',
   },
   {
-    year: 'High school', place: 'Guitar',
+    year: 'Signal', place: 'Guitar',
     color: '#ffd60a', visual: 'guitar',
-    title: 'Sophomore year, tone became a craft.',
-    sentence: 'Guitar taught me feedback: tiny changes, cleaner signal, better feel.',
+    title: 'Every riff is a feedback loop.',
+    sentence: 'Guitar trained my ear for small adjustments — tiny changes that compound into a cleaner signal. I use that instinct when tuning systems too.',
   },
   {
-    year: 'College freshman', place: 'DJ',
+    year: 'Flow', place: 'DJ',
     color: '#f472b6', visual: 'dj',
-    title: 'Freshman year, I learned flow.',
-    sentence: 'DJing taught me timing: read the room, blend the transition, keep the energy alive.',
+    title: 'Read the room. Blend the transition.',
+    sentence: 'DJing is timing: know when to hold, when to shift, and how to carry energy across the cut. Building products works the same way.',
   },
   {
     year: '2025', place: 'Snowboarding',
     color: '#e0f2fe', visual: 'snow',
-    title: 'In 2025, I started chasing lines.',
-    sentence: 'Snowboarding is new, but familiar: choose a path, commit, recover, keep moving.',
+    title: 'Pick a line. Commit.',
+    sentence: 'Snowboarding is new, but the lesson isn\'t: hesitation costs more than a wrong turn. Choose the path, trust the edge, keep moving.',
   },
   {
     year: 'Frame', place: 'Photography',
     color: '#a78bfa', visual: 'photo',
-    title: 'Photography taught me to frame signal.',
-    sentence: 'Light, timing, composition: decide what matters before the moment disappears.',
+    title: 'Decide what matters before the moment disappears.',
+    sentence: 'Photography is about framing signal before noise takes over — light, timing, composition. Same discipline I bring to architecture and product decisions.',
   },
   {
     year: '2012', place: 'Egypt',
     color: '#ffd60a', visual: 'code',
-    title: 'Then curiosity became code.',
-    sentence: 'At 12 in Egypt, I found a keyboard and started teaching myself how machines think.',
+    title: 'Then the screen became the ocean.',
+    sentence: 'At 12 in Cairo, I found a keyboard and went deep — the same stillness, the same pull. No bootcamp. Just curiosity and late nights.',
   },
   {
     year: '2019', place: 'SF Bay Area',
     color: '#ffd60a', visual: 'network',
-    title: 'The Bay Area widened the map.',
-    sentence: 'AI, markets, and data turned curiosity into direction.',
+    title: 'New environment. Wider signal.',
+    sentence: 'The Bay Area stretched the map — AI, markets, data, and people building at a pace that turned my curiosity into direction.',
   },
   {
     year: '2020', place: 'Middle College',
     color: '#ffd60a', visual: 'cards',
-    title: 'I chose the faster route.',
-    sentence: 'Middle College let me replace the normal timeline with real computer science momentum.',
+    title: 'I replaced the standard timeline with momentum.',
+    sentence: 'Middle College let me trade the normal track for real computer science, faster. Depth over breadth, always.',
   },
   {
-    year: 'Jul 2022', place: 'Microsoft ATL - Cairo',
+    year: 'Jul 2022', place: 'Microsoft ATL — Cairo',
     color: '#00a4ef', visual: 'microsoft',
-    title: 'First Microsoft build.',
-    sentence: 'I turned meetings into a searchable flow of transcript, keywords, video, and Azure data.',
+    title: 'First build at scale.',
+    sentence: 'I turned unstructured meetings into searchable flows — transcript, keywords, video, Azure data, all composed into one surface.',
   },
   {
-    year: 'Jan-Apr 2022', place: 'U.S. State Department',
+    year: 'Jan–Apr 2022', place: 'U.S. State Department',
     color: '#34d399', visual: 'research',
-    title: 'Signal from noise.',
-    sentence: 'Research became a toolkit for spotting misinformation before it spreads.',
+    title: 'Signal from noise — same skill, different domain.',
+    sentence: 'Research at State taught me to spot misinformation patterns early. The photographer\'s eye: frame what matters before it spreads.',
   },
   {
     year: '2023', place: 'Microsoft Gray Systems Lab',
     color: '#00a4ef', visual: 'database',
     title: 'Then I started tuning engines.',
-    sentence: 'ML-assisted database optimization moved from experiment into open source.',
+    sentence: 'ML-assisted database optimization — the guitarist\'s instinct applied to query planners. Small adjustments, compounding results, shipped to open source.',
   },
   {
-    year: '2023-2025', place: 'Amunet - Solo Founder',
+    year: '2023–2025', place: 'Amunet — Solo Founder',
     color: '#ffd60a', visual: 'phone',
-    title: 'I learned the full founder loop.',
-    sentence: 'SwiftUI, website, legal setup, App Store launch: every layer, built solo.',
+    title: 'Every layer, built solo.',
+    sentence: 'SwiftUI, marketing site, legal entity, App Store launch. Snowboarder\'s rule: commit to the line. No hesitation, no shortcuts.',
   },
   {
     year: '2024', place: 'Microsoft Gray Systems Lab',
     color: '#00a4ef', visual: 'chart',
-    title: '50% faster.',
-    sentence: 'A benchmark GUI surfaced a 50% P95 latency improvement.',
+    title: '50% faster. Scuba logic.',
+    sentence: 'One benchmark GUI surfaced a 50% P95 latency improvement. Stillness first — understand the system before you touch it.',
   },
   {
-    year: 'Now', place: 'Microsoft - Redmond',
+    year: 'Now', place: 'Microsoft — Redmond',
     color: '#00a4ef', visual: 'system',
-    title: 'Now I build at scale.',
-    sentence: 'Distributed systems, AI-assisted tuning, and tools that make complex work usable.',
+    title: 'Now I build at scale — and stay curious.',
+    sentence: 'Distributed systems, AI-assisted tuning, and tools that make complexity feel like calm water. Still diving. Still tuning. Still in the frame.',
   },
 ]
 
+/* ── Vertical dot navigation ── */
+function ChapterDots({ activeIdx, totalCount, color }) {
+  return (
+    <div className="hidden lg:flex flex-col items-center gap-[6px] absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 z-20">
+      {Array.from({ length: totalCount }).map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{
+            scale: i === activeIdx ? 1 : 1,
+            opacity: i === activeIdx ? 1 : i < activeIdx ? 0.45 : 0.18,
+          }}
+          transition={{ duration: 0.35, ease: EASE }}
+          className="rounded-full"
+          style={{
+            width:  i === activeIdx ? 7 : 4,
+            height: i === activeIdx ? 7 : 4,
+            background: i === activeIdx ? color : i < activeIdx ? 'rgba(240,237,228,0.45)' : 'rgba(240,237,228,0.18)',
+            boxShadow: i === activeIdx ? `0 0 10px ${color}` : 'none',
+            transition: 'width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 function RealisticScene({ src, color, type }) {
   return (
-    <div className="relative h-[18rem] w-[22rem] overflow-hidden rounded-[34px] border border-white/10 bg-black shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:h-[22rem] sm:w-[26rem]">
+    <div className="relative h-[20rem] w-[24rem] overflow-hidden rounded-[34px] border border-white/10 bg-black shadow-[0_34px_120px_rgba(0,0,0,0.5)] sm:h-[24rem] sm:w-[28rem]">
       <motion.img
         src={src}
         alt=""
@@ -209,12 +235,7 @@ function VisualGlyph({ type, color }) {
           <motion.span
             key={bubble}
             className="absolute rounded-full border border-cyan-100/40 bg-cyan-100/10"
-            style={{
-              left: `${18 + bubble * 12}%`,
-              bottom: `${12 + (bubble % 3) * 16}%`,
-              width: `${8 + bubble * 2}px`,
-              height: `${8 + bubble * 2}px`,
-            }}
+            style={{ left: `${18 + bubble * 12}%`, bottom: `${12 + (bubble % 3) * 16}%`, width: `${8 + bubble * 2}px`, height: `${8 + bubble * 2}px` }}
             animate={{ y: [-6, -118], x: [0, bubble % 2 ? 12 : -10], opacity: [0, 0.85, 0] }}
             transition={{ duration: 4.2, delay: bubble * 0.45, repeat: Infinity, ease: 'easeOut' }}
           />
@@ -233,13 +254,7 @@ function VisualGlyph({ type, color }) {
           <motion.span
             key={coral}
             className="absolute bottom-0 rounded-t-full"
-            style={{
-              left: `${18 + coral * 18}%`,
-              width: `${18 + coral * 3}px`,
-              height: `${52 + coral * 9}px`,
-              background: coral % 2 ? 'rgba(251,113,133,0.55)' : 'rgba(45,212,191,0.48)',
-              transformOrigin: 'bottom center',
-            }}
+            style={{ left: `${18 + coral * 18}%`, width: `${18 + coral * 3}px`, height: `${52 + coral * 9}px`, background: coral % 2 ? 'rgba(251,113,133,0.55)' : 'rgba(45,212,191,0.48)', transformOrigin: 'bottom center' }}
             animate={{ rotate: [-4, 5, -4] }}
             transition={{ duration: 3.4 + coral * 0.25, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -516,15 +531,15 @@ function VisualGlyph({ type, color }) {
   return null
 }
 
-/* ── Right-side visual panel ───────────────────────────────────── */
+/* ── Right-side visual panel ── */
 function ChapterVisual({ ch, motionStyle }) {
   return (
     <motion.div
       key={ch.year}
-      initial={{ opacity: 0, scale: 0.92 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 1.06 }}
-      transition={{ duration: 0.6, ease: EASE }}
+      initial={{ opacity: 0, scale: 0.94, y: 22 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 1.03, y: -18 }}
+      transition={{ duration: 0.75, ease: EASE }}
       style={{
         transformPerspective: 1200,
         rotateX: motionStyle.visualRotateX,
@@ -549,22 +564,9 @@ function ChapterVisual({ ch, motionStyle }) {
         <motion.div
           key={ring}
           className="absolute rounded-full"
-          style={{
-            width:  `${ring * 140}px`,
-            height: `${ring * 140}px`,
-            border: `1px solid ${ch.color}`,
-            opacity: 0,
-          }}
-          animate={{
-            opacity:   [0, 0.18 / ring, 0],
-            scale:     [0.7, 1.15, 1.4],
-          }}
-          transition={{
-            duration: 2.8,
-            delay:    ring * 0.45,
-            repeat:   Infinity,
-            ease:     'easeOut',
-          }}
+          style={{ width: `${ring * 140}px`, height: `${ring * 140}px`, border: `1px solid ${ch.color}`, opacity: 0 }}
+          animate={{ opacity: [0, 0.18 / ring, 0], scale: [0.7, 1.15, 1.4] }}
+          transition={{ duration: 2.8, delay: ring * 0.45, repeat: Infinity, ease: 'easeOut' }}
         />
       ))}
 
@@ -582,8 +584,8 @@ function ChapterVisual({ ch, motionStyle }) {
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           className="relative flex min-h-72 w-full min-w-0 items-center justify-center overflow-hidden rounded-[36px] sm:min-w-72"
           style={{
-            background: `radial-gradient(circle at 50% 45%, ${ch.color}18 0%, ${ch.color}05 62%, transparent 72%)`,
-            boxShadow: `0 0 70px ${ch.color}24, 0 0 130px ${ch.color}0f`,
+            background: `radial-gradient(circle at 50% 45%, ${ch.color}20 0%, ${ch.color}06 62%, transparent 72%)`,
+            boxShadow: `0 0 80px ${ch.color}28, 0 0 140px ${ch.color}10`,
           }}
         >
           <motion.div
@@ -631,10 +633,7 @@ function ChapterVisual({ ch, motionStyle }) {
       </motion.div>
 
       {/* Corner accent dots */}
-      {[
-        'top-6 left-6', 'top-6 right-6',
-        'bottom-6 left-6', 'bottom-6 right-6',
-      ].map((pos, i) => (
+      {['top-6 left-6', 'top-6 right-6', 'bottom-6 left-6', 'bottom-6 right-6'].map((pos, i) => (
         <motion.div
           key={i}
           className={`absolute ${pos} w-1.5 h-1.5 rounded-full`}
@@ -647,14 +646,14 @@ function ChapterVisual({ ch, motionStyle }) {
   )
 }
 
-/* ── Left-side chapter card ────────────────────────────────────── */
-function ChapterCard({ ch, motionStyle }) {
+/* ── Left-side chapter card ── */
+function ChapterCard({ ch, motionStyle, activeIdx, nextCh }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -70 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -48 }}
-      transition={{ duration: 0.55, ease: EASE }}
+      initial={{ opacity: 0, y: 36, filter: 'blur(6px)' }}
+      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      exit={{ opacity: 0, y: -24, filter: 'blur(4px)' }}
+      transition={{ duration: 0.68, ease: EASE }}
       style={{
         transformPerspective: 1200,
         rotateX: motionStyle.cardRotateX,
@@ -665,26 +664,36 @@ function ChapterCard({ ch, motionStyle }) {
       className="glass-flow rounded-3xl overflow-hidden w-full"
     >
       {/* Color accent bar */}
-      <div className="h-[2px]"
-        style={{ background: `linear-gradient(to right, ${ch.color}, transparent 80%)` }}
+      <div className="h-[3px]"
+        style={{ background: `linear-gradient(to right, ${ch.color}, ${ch.color}55 60%, transparent)` }}
       />
 
       <div className="p-8 md:p-10">
-        {/* Year / place label */}
-        <div className="flex items-center gap-2.5 mb-5">
-          <span className="h-px w-5 shrink-0" style={{ background: ch.color }} />
-          <span className="text-[10px] font-semibold tracking-[0.3em] uppercase"
-            style={{ color: ch.color }}>
-            {ch.year} · {ch.place}
+        {/* Chapter counter + year/place */}
+        <div className="mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span
+              className="rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.28em]"
+              style={{ color: ch.color, background: `${ch.color}14`, border: `1px solid ${ch.color}30` }}
+            >
+              {ch.year}
+            </span>
+            <span className="text-[10px] font-medium uppercase tracking-[0.24em] text-[rgba(240,237,228,0.38)]">
+              {ch.place}
+            </span>
+          </div>
+          {/* Chapter counter */}
+          <span className="text-[10px] font-mono tracking-widest text-[rgba(240,237,228,0.22)]">
+            {String(activeIdx + 1).padStart(2, '0')} / {String(chapters.length).padStart(2, '0')}
           </span>
         </div>
 
         {/* Title */}
         <motion.h3
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          className="font-black leading-[1.0] tracking-normal text-[#f0ede4] mb-7"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.08, ease: EASE }}
+          className="mb-8 font-black leading-[1.02] tracking-[-0.03em] text-[#f0ede4]"
           style={{ fontSize: 'clamp(2.4rem, 4vw, 3.6rem)' }}
         >
           {ch.title}
@@ -692,12 +701,33 @@ function ChapterCard({ ch, motionStyle }) {
 
         {/* Animated sentence */}
         <AnimatedSentence text={ch.sentence} />
+
+        {/* Next chapter preview */}
+        {nextCh && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-8 pt-6 border-t border-white/[0.07] flex items-center gap-3"
+          >
+            <motion.span
+              animate={{ x: [0, 4, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+              className="text-[rgba(240,237,228,0.2)] text-xs"
+            >
+              ↓
+            </motion.span>
+            <span className="text-[11px] tracking-wide text-[rgba(240,237,228,0.22)] font-medium truncate">
+              Next — {nextCh.title}
+            </span>
+          </motion.div>
+        )}
       </div>
     </motion.div>
   )
 }
 
-/* ── Section ───────────────────────────────────────────────────── */
+/* ── Section ── */
 export default function ChronicleSection() {
   const containerRef = useRef(null)
   const [activeIdx, setActiveIdx] = useState(0)
@@ -733,6 +763,7 @@ export default function ChronicleSection() {
   })
 
   const ch = chapters[activeIdx]
+  const nextCh = activeIdx < chapters.length - 1 ? chapters[activeIdx + 1] : null
 
   return (
     <section
@@ -744,63 +775,34 @@ export default function ChronicleSection() {
       {/* ── Sticky panel ── */}
       <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
 
-        {/* Background atmosphere — color shifts per chapter */}
+        {/* Background atmosphere */}
         <div className="pointer-events-none absolute inset-0">
-          <motion.div
-            animate={{ opacity: [0.04, 0.08, 0.04] }}
-            transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-            className="absolute inset-0"
-            style={{
-              background: `radial-gradient(ellipse 70% 55% at 70% 50%, ${ch.color}14, transparent)`,
-            }}
-          />
+          <AnimatePresence>
+            <motion.div
+              key={ch.color}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.1, ease: 'easeInOut' }}
+              className="absolute inset-0"
+              style={{
+                background: `radial-gradient(ellipse 72% 58% at 70% 50%, ${ch.color}20, transparent)`,
+              }}
+            />
+          </AnimatePresence>
+          {/* Vignette */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_50%,rgba(5,5,5,0.55)_100%)]" />
         </div>
 
-        {/* ── Top bar ── */}
-        <div className="relative z-10 pt-24 pb-4 px-6 sm:px-12">
-          <div className="mx-auto max-w-6xl flex items-end justify-between">
-            <div>
-              <p className="text-[10px] font-semibold tracking-[0.34em] uppercase text-[#ffd60a] mb-1">
-                Hobbies first
-              </p>
-              <h2 className="text-2xl font-black tracking-normal text-[#f0ede4]">
-                Then the journey.
-              </h2>
-            </div>
+        {/* Navbar padding */}
+        <div className="pt-20" />
 
-            {/* Chapter counter */}
-            <div className="glass-ball rounded-2xl px-5 py-3 text-right">
-              <motion.p
-                key={activeIdx}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-2xl font-black text-[#ffd60a] leading-none tabular-nums"
-              >
-                {String(activeIdx + 1).padStart(2, '0')}
-              </motion.p>
-              <p className="text-[10px] tracking-widest text-[rgba(240,237,228,0.35)] mt-0.5">
-                / {String(chapters.length).padStart(2, '0')}
-              </p>
-            </div>
-          </div>
-
-          {/* Progress bar */}
-          <div className="mx-auto max-w-6xl mt-4">
-            <div className="h-px w-full bg-[rgba(255,255,255,0.07)] rounded-full overflow-hidden">
-              <motion.div
-                className="h-full rounded-full"
-                style={{ scaleX: scrollYProgress, transformOrigin: 'left center', background: ch.color }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* ── Two-column content area ── */}
+        {/* Two-column content area */}
         <div className="relative z-10 flex-1 flex items-center px-6 sm:px-12 pb-4">
-          <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 items-center">
+          <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] gap-10 items-center">
 
             {/* MOBILE — chapter visual */}
-            <div className="flex h-[260px] items-center justify-center lg:hidden">
+            <div className="flex h-[240px] items-center justify-center lg:hidden">
               <AnimatePresence mode="wait">
                 <ChapterVisual key={`mobile-${activeIdx}`} ch={ch} motionStyle={motionStyle} />
               </AnimatePresence>
@@ -809,12 +811,12 @@ export default function ChronicleSection() {
             {/* LEFT — chapter card */}
             <div>
               <AnimatePresence mode="wait">
-                <ChapterCard key={activeIdx} ch={ch} motionStyle={motionStyle} />
+                <ChapterCard key={activeIdx} ch={ch} motionStyle={motionStyle} activeIdx={activeIdx} nextCh={nextCh} />
               </AnimatePresence>
             </div>
 
             {/* RIGHT — visual panel */}
-            <div className="hidden lg:flex items-center justify-center h-[420px]">
+            <div className="hidden lg:flex items-center justify-center h-[460px]">
               <AnimatePresence mode="wait">
                 <ChapterVisual key={activeIdx} ch={ch} motionStyle={motionStyle} />
               </AnimatePresence>
@@ -822,17 +824,17 @@ export default function ChronicleSection() {
           </div>
         </div>
 
-        {/* ── Scroll hint ── */}
-        <div className="relative z-10 pb-5 flex flex-col items-center gap-2">
+        {/* Scroll hint */}
+        <div className="relative z-10 pb-6 flex flex-col items-center gap-2">
           {activeIdx < chapters.length - 1 ? (
             <>
               <motion.div
-                animate={{ y: [0, 5, 0] }}
-                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-                className="w-px h-7 bg-gradient-to-b from-[rgba(255,214,10,0.5)] to-transparent"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+                className="w-px h-8 bg-gradient-to-b from-[rgba(255,214,10,0.5)] to-transparent"
               />
-              <p className="text-[10px] tracking-[0.28em] uppercase text-[rgba(240,237,228,0.2)]">
-                scroll for next
+              <p className="text-[10px] tracking-[0.28em] uppercase text-[rgba(240,237,228,0.18)]">
+                scroll
               </p>
             </>
           ) : (
@@ -845,6 +847,9 @@ export default function ChronicleSection() {
             </motion.p>
           )}
         </div>
+
+        {/* Vertical dot nav */}
+        <ChapterDots activeIdx={activeIdx} totalCount={chapters.length} color={ch.color} />
       </div>
     </section>
   )

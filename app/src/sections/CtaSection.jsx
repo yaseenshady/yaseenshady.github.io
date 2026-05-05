@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import InteractiveStage from '../components/InteractiveStage'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -39,6 +40,23 @@ export default function CtaSection({ reduceMotion }) {
         >
           I'm always up for a great conversation about AI, systems design, developer tooling, or the ocean.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, delay: 0.24, ease: EASE }}
+          className="mb-12"
+        >
+          <InteractiveStage
+            variant="cta"
+            reduceMotion={reduceMotion}
+            eyebrow="Connection visual"
+            title="Big signal. Easy reach."
+            points={['Email', 'GitHub', 'Lexoire']}
+            className="mx-auto h-[18rem] max-w-4xl sm:h-[22rem]"
+          />
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
